@@ -1,12 +1,10 @@
-import { nanoid } from "@reduxjs/toolkit";
+import Router from "./shared/Router";
 
 function App() {
-  console.log(nanoid());
-
   return (
-    <div className="App">
-      <h1> react team 7 </h1>
-    </div>
+    <>
+      <Router />
+    </>
   );
 }
 
