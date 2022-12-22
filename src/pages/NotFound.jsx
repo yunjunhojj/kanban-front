@@ -1,5 +1,4 @@
-import styled, { StyledComponent } from "styled-components";
-
+// import styled, { StyledComponent } from "styled-components";
 const NotFound = () => {
   return <div>NotFound</div>;
 };
