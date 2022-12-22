@@ -1,70 +1,81 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```json
+{
+  "boards": [
+    {
+      "id": "z6ost9Sp0Lx7G9A0WGhvS",
+      "category": "todo",
+      "title": "투두 제목 ",
+      "content": "보드 내용",
+      "pw": "보드 비밀번호",
+      "comments": [
+        {
+          "id": "quNBJ64A3Up7YmKMWQ3Ru",
+          "name": "작성자 이름",
+          "pw": "작성자 비밀번호",
+          "comment": "댓글"
+        }
+      ]
+    },
+    {
+      "id": "vzSp-jzTXppJSSP3eLZ3k",
+      "category": "working",
+      "title": "진행 중 제목",
+      "content": "보드 내용",
+      "pw": "보드 비밀번호",
+      "comments": [
+        {
+          "id": "h-e0M_yaI40OgkHQv_0Yd",
+          "name": "작성자 이름",
+          "pw": "작성자 비밀번호",
+          "comment": "댓글"
+        }
+      ]
+    },
+    {
+      "id": "L1--H0Ob0NOMlfXUHt9r5",
+      "category": "validate",
+      "title": "QA 제목",
+      "content": "보드 내용",
+      "pw": "보드 비밀번호",
+      "comments": [
+        {
+          "id": "CP93RdIrJI_xPxj0AVvjd",
+          "name": "작성자 이름",
+          "pw": "작성자 비밀번호",
+          "comment": "댓글"
+        }
+      ]
+    },
+    {
+      "id": "pIIk2N5JxmP3iZwuZJDQD",
+      "category": "complete",
+      "title": "완료 제목",
+      "content": "보드 내용",
+      "pw": "보드 비밀번호",
+      "comments": [
+        {
+          "id": "i6lr-LeOKQBKx1SKt7N_m",
+          "name": "작성자 이름",
+          "pw": "작성자 비밀번호",
+          "comment": "댓글"
+        }
+      ]
+    },
+    {
+      "id": "QEK63i9tl9Z-6yH_rxO3n",
+      "category": "archive",
+      "title": "찐완료 제목",
+      "content": "보드 내용",
+      "pw": "보드 비밀번호",
+      "comments": [
+        {
+          "id": "Yped_6UxZ_CK0xAFId1qY",
+          "name": "작성자 이름",
+          "pw": "작성자 비밀번호",
+          "comment": "댓글"
+        }
+      ]
+    }
+  ]
+}
+```
