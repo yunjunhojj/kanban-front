@@ -14,7 +14,11 @@ const Home = () => {
   console.log("error", error);
   console.log("boards", boards);
 
-  return <div>가나다</div>;
+  return (
+    <>
+      <div>Home입니다.</div>
+    </>
+  );
 };
 
 export default Home;

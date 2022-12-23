@@ -1,6 +1,6 @@
-import styled, { createGlobalStyled } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
-export const GlobalStyled = createGlobalStyled`
+const GlobalStyled = createGlobalStyle`
   /* CSS RESET */
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
 
@@ -10,6 +10,8 @@ export const GlobalStyled = createGlobalStyled`
       margin: 0;
       font-size: 16px;
       font-family: 'Noto Sans KR', sans-serif;
+      color : #000;
+      // background-color : red;
   }
   a {text-decoration: none;}
   li {list-style: none;}
@@ -18,10 +20,6 @@ export const GlobalStyled = createGlobalStyled`
       outline: none;
   }
   table {border-collapse: collapse;}
-
-  body {font-family: 'Noto Sans KR', sans-serif;}
-
-
 `;
 
 //todo , 커스텀 푸터 헤더 작성해주세요
@@ -31,7 +29,6 @@ const Layout = ({ children }) => {
   return (
     <>
       <GlobalStyled />
-      {/* <CustomHeader /> */}
       <MainStyled>
         <main className="main-container">{children}</main>
       </MainStyled>
