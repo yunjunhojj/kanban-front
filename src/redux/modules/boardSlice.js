@@ -39,6 +39,10 @@ const boardSlice = createSlice({
         }
       });
     },
+    deleteBoard: (state, action) => {
+      axios.delete(`http://localhost:3001/boards/${action.payload}`);
+      state.todos = state.boards.filter((board) => board.id !== action.payload);
+    },
   },
   extraReducers: (builder) => {
     // getBoard
@@ -58,6 +62,6 @@ const boardSlice = createSlice({
   },
 });
 
-export const { toggle } = boardSlice.actions;
+export const { toggle, deleteBoard } = boardSlice.actions;
 export { getBoardThunk };
 export default boardSlice.reducer;

@@ -1,6 +1,7 @@
 import styled from "styled-components";
-
+import { useDispatch } from "react-redux";
 import CustomBtn from "./CustomBtn";
+import { deleteBoard } from "../redux/modules/boardSlice";
 
 const BoardItemBox = styled.div`
   border: 1px solid gray;
@@ -23,22 +24,9 @@ const TitleBox = styled.h2`
 `;
 
 const BoardItem = () => {
+  const dispatch = useDispatch();
+
   const propsinit = [
-    {
-      id: "z6ost9Sp0Lx7G9A0WGhvS",
-      category: "todo",
-      title: "투두 제목 ",
-      content: "보드 내용",
-      pw: "보드 비밀번호",
-      comments: [
-        {
-          id: "quNBJ64A3Up7YmKMWQ3Ru",
-          name: "작성자 이름",
-          pw: "작성자 비밀번호",
-          comment: "댓글",
-        },
-      ],
-    },
     {
       id: "vzSp-jzTXppJSSP3eLZ3k",
       category: "working",
@@ -54,7 +42,26 @@ const BoardItem = () => {
         },
       ],
     },
+    {
+      id: "L1--H0Ob0NOMlfXUHt9r5",
+      category: "validate",
+      title: "QA 제목",
+      content: "보드 내용",
+      pw: "보드 비밀번호",
+      comments: [
+        {
+          id: "CP93RdIrJI_xPxj0AVvjd",
+          name: "작성자 이름",
+          pw: "작성자 비밀번호",
+          comment: "댓글",
+        },
+      ],
+    },
   ];
+
+  const onDelete = (id) => {
+    dispatch(deleteBoard(id));
+  };
 
   return (
     <BoardItemBox>
@@ -91,7 +98,13 @@ const BoardItem = () => {
       >
         저장
       </CustomBtn>
-      <Close> x </Close>
+      <Close
+        onClick={() => {
+          onDelete(propsinit[0].id);
+        }}
+      >
+        x
+      </Close>
     </BoardItemBox>
   );
 };
