@@ -196,7 +196,9 @@ summary {
 `;
 
 //todo , 커스텀 푸터 헤더 작성해주세요
-const MainStyled = styled.div``;
+const MainStyled = styled.div`
+  font-size: 20px;
+`;
 
 const Layout = ({ children }) => {
   return (
