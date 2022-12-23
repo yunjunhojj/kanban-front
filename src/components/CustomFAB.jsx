@@ -9,10 +9,10 @@ const CustomFABStyled = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 4px 36px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0.25rem 2.25rem rgba(0, 0, 0, 0.08);
   position: fixed;
-  right: 96px;
-  bottom: 96px;
+  right: 6rem;
+  bottom: 6rem;
   .FAB-icon {
     width: 1.5rem;
     height: 1.5rem;
