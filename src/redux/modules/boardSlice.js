@@ -24,6 +24,20 @@ const getBoardThunk = createAsyncThunk(
   }
 );
 
+const postBoardThunk = createAsyncThunk(
+  "board/postBoard",
+  async (payload, thunkAPI) => {
+    try {
+      await axios.post(BASE_URL, payload);
+
+      const data = await axios.get(BASE_URL);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 const boardSlice = createSlice({
   name: "boards",
   initialState,
@@ -42,9 +56,20 @@ const boardSlice = createSlice({
       state.error = action.payload;
     });
 
-    // builder
+    // postBoard
+    builder.addCase(postBoardThunk.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(postBoardThunk.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.boards = action.payload;
+    });
+    builder.addCase(postBoardThunk.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
   },
 });
 
-export { getBoardThunk };
+export { getBoardThunk, postBoardThunk };
 export default boardSlice.reducer;

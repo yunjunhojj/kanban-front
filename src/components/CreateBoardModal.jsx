@@ -1,4 +1,13 @@
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { postBoardThunk } from "../redux/modules/boardSlice";
+import { useInput } from "../Hooks";
+import { nanoid } from "@reduxjs/toolkit";
+
+/**
+ * 2개의 버튼을 병렬로 배치하고 사용하기 위해 form을 사용하지 않습니다.
+ * 제출에 대한 동작과 취소에 대한 동작 각각 독립적으로 사용하기 위해서 form을 사용하지 않습니다. form에 버튼 2개를 처리할 수 있으면 처리하겠습니다.
+ */
 
 const CreateBoardModalStyled = styled.div`
   /* Overlay */
@@ -63,6 +72,35 @@ const CreateBoardModalStyled = styled.div`
 `;
 
 const CreateBoardModal = () => {
+  const dispatch = useDispatch();
+  const [name, handleOnChangeName, resetName] = useInput("");
+  const [password, handleOnChangePassword, resetPassword] = useInput("");
+  const [title, handleOnChangeTitle, resetTitle] = useInput("");
+  const [content, handleOnChangeContent, resetContent] = useInput("");
+
+  const resetAllInput = () => {
+    resetName();
+    resetPassword();
+    resetTitle();
+    resetContent();
+  };
+
+  const handleSubmitBoard = (e) => {
+    e.preventDefault();
+    const newBoard = {
+      id: nanoid(),
+      name,
+      title,
+      content,
+      password,
+    };
+    dispatch(postBoardThunk(newBoard));
+    resetAllInput();
+  };
+
+  const cancelPostBoard = () => {
+    resetAllInput();
+  };
   return (
     <CreateBoardModalStyled>
       <div className="modal">
@@ -73,6 +111,8 @@ const CreateBoardModal = () => {
             placeholder="담당자 이름"
             name=""
             id=""
+            value={name}
+            onChange={(e) => handleOnChangeName(e)}
           />
           <input
             className="modal-input user-info-item"
@@ -80,6 +120,8 @@ const CreateBoardModal = () => {
             placeholder="비밀번호"
             name=""
             id=""
+            value={password}
+            onClick={(e) => handleOnChangePassword(e)}
           />
         </div>
         <input
@@ -88,6 +130,8 @@ const CreateBoardModal = () => {
           placeholder="제목"
           name=""
           id=""
+          value={title}
+          onClick={(e) => handleOnChangeTitle(e)}
         />
         {/* <input type="text" placeholder="내용" name="" id="" /> */}
         <textarea
@@ -95,10 +139,19 @@ const CreateBoardModal = () => {
           name=""
           id=""
           placeholder="(내용)"
+          value={content}
+          onClick={(e) => handleOnChangeContent(e)}
         ></textarea>
         <div className="modal-btn-container">
-          <button className="modal-btn-item">취소</button>
-          <button className="modal-btn-item">저장</button>
+          <button
+            className="modal-btn-item"
+            onClick={(e) => handleSubmitBoard(e)}
+          >
+            취소
+          </button>
+          <button className="modal-btn-item" onClick={() => cancelPostBoard()}>
+            저장
+          </button>
         </div>
       </div>
     </CreateBoardModalStyled>
