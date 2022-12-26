@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Home, NotFound } from "../pages";
-// import {} from -
+import { Home, NotFound, Detail } from "../pages";
 import Layout from "./Layout.jsx";
 
 const Router = () => {
@@ -9,7 +8,7 @@ const Router = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/:id" element={<Detail />} /> */}
+          <Route path="/:id" element={<Detail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
