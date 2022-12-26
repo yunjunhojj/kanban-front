@@ -43,8 +43,6 @@ const BoardItem = ({ name, id, title, category }) => {
     dispatch(deleteBoard(id));
   };
 
-  console.log(category);
-
   return (
     <BoardItemBox>
       <div className="boardTop">

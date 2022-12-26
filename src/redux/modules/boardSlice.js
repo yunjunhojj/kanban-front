@@ -37,6 +37,7 @@ const boardSlice = createSlice({
         "archive",
       ];
 
+      //action= [ 버튼 종류 , board.id, current category] 를 입력 받습니다.
       if (action.payload[0] == "nextCategory") {
         const nextStep = categoryList[++action.payload[2]];
         axios.patch(`http://localhost:3001/boards/${action.payload[1]}`, {
@@ -60,19 +61,9 @@ const boardSlice = createSlice({
           }
         });
       }
-      axios.patch(`http://localhost:3001/boards/${action.payload[0]}`, {
-        category: action.payload[1],
-      });
-
-      state.boards.forEach((todo) => {
-        if (todo.id == action.payload) {
-          todo.category = action.payload[1];
-        }
-      });
     },
     deleteBoard: (state, action) => {
       axios.delete(`http://localhost:3001/boards/${action.payload}`);
-      console.log(action.payload);
       state.boards = state.boards.filter(
         (board) => board.id !== action.payload
       );
