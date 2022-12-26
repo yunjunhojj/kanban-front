@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { getBoardThunk } from "../redux/modules/boardSlice";
 import styled from "styled-components";
 import BoardItem from "./BoardItem";
-<<<<<<< HEAD
 import { nanoid } from "@reduxjs/toolkit";
 
 const BoardColumnStyled = styled.div`
@@ -14,35 +13,16 @@ const BoardColumnStyled = styled.div`
   margin: 0 0.625rem;
   padding: 0.625rem;
   padding-bottom: 1.875rem;
-=======
-
-const BoardColumnStyled = styled.div`
-  max-width: 21.25rem;
-  min-height: 50vh;
-  width: 100%;
-  height: 100%;
-
-  margin: 0 0.3125rem;
->>>>>>> 1116bf55115514f4940b2cfbd9a0733cdfbaed12
 
   border: 1px solid #ccc;
   border-radius: 0.625rem;
 
-<<<<<<< HEAD
   box-shadow: 0 0 3px rgba(170, 170, 170, 1);
 
   transition-duration: 0.3s;
 
   &:hover {
     box-shadow: 0.3125rem 0.3125rem 0.75rem rgba(0, 0, 0, 0.7);
-=======
-  box-shadow: 0 0 5px rgba(170, 170, 170, 1);
-
-  transition-duration: 0.2s;
-
-  &:hover {
-    box-shadow: 0.3125rem -0.3125rem 0.375rem rgba(0, 0, 0, 0.3);
->>>>>>> 1116bf55115514f4940b2cfbd9a0733cdfbaed12
   }
 
   /* background-color: beige; */
@@ -71,7 +51,6 @@ const BoardColumn = (props) => {
     dispatch(getBoardThunk());
   }, [dispatch]);
 
-<<<<<<< HEAD
   //  <BoardColumn category="Schedule" /> prop으로 내려운 category와 db.json의 category와 매칭시켜서 kanban의 위치를 지정함..
   const renderedBoardItems = boards.map((item) => {
     console.log("item.category : ", item.category);
@@ -80,14 +59,6 @@ const BoardColumn = (props) => {
       return <BoardItem {...item} key={nanoid()}></BoardItem>;
     }
     return null;
-=======
-  //  <BoardColumn title="Schedule" /> title을 db.json의 category와 매칭시켜서 kanban의 위치를 지정함..
-  const renderedBoardItems = boards.map((item) => {
-    console.log("item.category : ", item.category);
-    if (item.category === props.category) {
-      return <BoardItem {...item}></BoardItem>;
-    }
->>>>>>> 1116bf55115514f4940b2cfbd9a0733cdfbaed12
   });
 
   return (
