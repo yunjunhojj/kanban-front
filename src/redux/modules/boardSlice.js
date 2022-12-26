@@ -29,15 +29,45 @@ const boardSlice = createSlice({
   initialState,
   reducers: {
     toggle: (state, action) => {
-      axios.patch(`http://localhost:3001/boards/${action.payload[0]}`, {
-        category: action.payload[1],
-      });
+      const step = "";
+      const categoryList = [
+        "todo",
+        "working",
+        "validate",
+        "complete",
+        "archive",
+      ];
 
-      state.boards.forEach((todo) => {
-        if (todo.id == action.payload) {
-          todo.category = action.payload[1];
-        }
-      });
+      console.log("state", state);
+      console.log("action", action.payload[1]);
+      console.log("category", categoryList[action.payload[1]]);
+
+      if (action.payload[2] == "nextCategory") {
+        console.log("nextCategory", action.payload[2]);
+        console.log(categoryList[++action.payload[1]]);
+
+        axios.patch(`http://localhost:3001/boards/${action.payload[0]}`, {
+          category: categoryList[++action.payload[1]],
+        });
+
+        state.boards.forEach((todo) => {
+          if (todo.id == action.payload) {
+            todo.category = categoryList[++action.payload[1]];
+          }
+        });
+      } else {
+        console.log("preCategoryz", action.payload[2]);
+        console.log(categoryList[--action.payload[1]]);
+        axios.patch(`http://localhost:3001/boards/${action.payload[0]}`, {
+          category: categoryList[--action.payload[1]],
+        });
+
+        state.boards.forEach((todo) => {
+          if (todo.id == action.payload) {
+            todo.category = categoryList[--action.payload[1]];
+          }
+        });
+      }
     },
     deleteBoard: (state, action) => {
       axios.delete(`http://localhost:3001/boards/${action.payload}`);
