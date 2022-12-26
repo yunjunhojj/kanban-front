@@ -1,27 +1,35 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getBoardThunk } from "../redux/modules/boardSlice";
-import { getCommentThunk } from "../redux/modules/commentSlice";
+import { deleteBoard, getBoardThunk } from "../redux/modules/boardSlice";
 import styled from "styled-components";
+import CommentRead from "../components/CommentRead";
+import CommentCreate from "../components/CommentCreate";
 // , { StyledComponent } from "styled-components";
 const Detail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { boards } = useSelector((state) => state.boards);
-  const { comments } = useSelector((state) => state.comments);
 
   useEffect(() => {
     dispatch(getBoardThunk());
-    dispatch(getCommentThunk());
   }, [dispatch]);
 
   // 이전 컴포넌트에서 받아온 파라미터 조회
   const params = useParams().id;
+  // 회면에 뿌리기
   const filteredBoard = boards.filter((item) => item.id === params);
   const board = filteredBoard[0];
-  const filteredComment = comments.filter((item) => item.boardId === params);
-  const comment = filteredComment[0];
+
+  // 상세페이지 보드 삭제 버튼 이벤트 핸들러
+  const deleteBoardHandler = (event) => {
+    dispatch(deleteBoard(event.target.value));
+    navigate("/");
+  };
+  // 상세페이지 보드 편집
+  // const editBoardHandler = (event)=>{
+  //   dispatch()
+  // }
   const prevPageHandle = () => {
     navigate("/");
   };
@@ -31,6 +39,10 @@ const Detail = () => {
         <div className="board-container">
           {/* 제목 */}
           <p className="title">{board?.title}</p>
+          <button onClick={deleteBoardHandler} value={board?.id}>
+            삭제
+          </button>
+          {/* <button onClick={editBoardHandler}>편집</button> */}
           {/* 담당자 */}
           <span className="director">{board?.name}</span>
           {/* 단계 */}
@@ -38,28 +50,18 @@ const Detail = () => {
           {/* 보드내용 */}
           <div className="board-content">{board?.content}</div>
         </div>
+        <button onClick={prevPageHandle}>(임시)이전페이지로 이동</button>
         <hr className="line"></hr>
-        <div className="comment-container">
-          {/* 코멘트 부분 */}
-          <p className="comment-header">댓글</p>
-          {/* {board?.comments.map((item) => {
-            return (
-              <> */}
-          <p className="comment-name">{comment?.writer}</p>
-          <div className="comment-content">{comment?.comment}</div>
-          {/* <h4>댓글 작성자 id: {item.id}</h4> */}
-          {/* </>
-            );
-          })} */}
-          <button onClick={prevPageHandle}>(임시)이전페이지로 이동</button>
-        </div>
       </StyledDiv>
+      {/* 댓글 부분 */}
+      <CommentCreate />
+      <CommentRead />
     </>
   );
 };
 const StyledDiv = styled.div`
-  max-width: 1440px;
-  min-height: 100vh;
+  /* max-width: 1440px; */
+  /* min-height: 100vh; */
   width: 100%;
   height: 100%;
   display: flex;
@@ -115,11 +117,11 @@ const StyledDiv = styled.div`
     width: 100%;
     background-color: grey;
   }
-  .comment-container {
-    padding: 0 15.75rem;
-    /* margin-top: 2.75rem; */
-  }
-  .comment-header {
+  /* .comment-container {
+    padding: 0 15.75rem; */
+  /* margin-top: 2.75rem; */
+  /* } */
+  /* .comment-header {
     margin-top: 2.75rem;
     font-style: normal;
     font-weight: 700;
@@ -141,7 +143,7 @@ const StyledDiv = styled.div`
     padding: 0.75rem;
     background-color: lightcoral;
     word-break: break-all;
-  }
+  } */
 `;
 
 export default Detail;

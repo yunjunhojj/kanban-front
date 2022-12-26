@@ -21,7 +21,18 @@ const getBoardThunk = createAsyncThunk(
     }
   }
 );
-
+const postBoardThunk = createAsyncThunk(
+  "board/postBoard",
+  async (payload, thunkAPI) => {
+    try {
+      await axios.post(BASE_URL, payload);
+      const data = await axios.get(BASE_URL);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 const boardSlice = createSlice({
   name: "boards",
   initialState,
@@ -35,14 +46,14 @@ const boardSlice = createSlice({
         "archive",
       ];
 
-      if (action.payload[0] == "nextCategory") {
+      if (action.payload[0] === "nextCategory") {
         const nextStep = categoryList[++action.payload[2]];
         axios.patch(`http://localhost:3001/boards/${action.payload[1]}`, {
           category: nextStep,
         });
 
         state.boards.forEach((todo) => {
-          if (todo.id == action.payload[1]) {
+          if (todo.id === action.payload[1]) {
             todo.category = categoryList[action.payload[2]];
           }
         });
@@ -53,7 +64,7 @@ const boardSlice = createSlice({
         });
 
         state.boards.forEach((todo) => {
-          if (todo.id == action.payload[1]) {
+          if (todo.id === action.payload[1]) {
             todo.category = categoryList[action.payload[2]];
           }
         });
@@ -63,7 +74,7 @@ const boardSlice = createSlice({
       });
 
       state.boards.forEach((todo) => {
-        if (todo.id == action.payload) {
+        if (todo.id === action.payload) {
           todo.category = action.payload[1];
         }
       });
@@ -90,10 +101,21 @@ const boardSlice = createSlice({
       state.error = action.payload;
     });
 
-    // builder
+    // postBoard
+    builder.addCase(postBoardThunk.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(postBoardThunk.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.boards = action.payload;
+    });
+    builder.addCase(postBoardThunk.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
   },
 });
 
 export const { toggle, deleteBoard } = boardSlice.actions;
-export { getBoardThunk };
+export { getBoardThunk, postBoardThunk };
 export default boardSlice.reducer;
