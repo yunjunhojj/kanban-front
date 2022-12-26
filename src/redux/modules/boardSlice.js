@@ -25,7 +25,23 @@ const getBoardThunk = createAsyncThunk(
 const boardSlice = createSlice({
   name: "boards",
   initialState,
-  reducers: {},
+  reducers: {
+    toggle: (state, action) => {
+      axios.patch(`http://localhost:3001/boards/${action.payload[0]}`, {
+        category: action.payload[1],
+      });
+
+      state.boards.forEach((todo) => {
+        if (todo.id == action.payload) {
+          todo.category = action.payload[1];
+        }
+      });
+    },
+    deleteBoard: (state, action) => {
+      axios.delete(`http://localhost:3001/boards/${action.payload}`);
+      state.todos = state.boards.filter((board) => board.id !== action.payload);
+    },
+  },
   extraReducers: (builder) => {
     // getBoard
     builder.addCase(getBoardThunk.pending, (state) => {
@@ -44,5 +60,6 @@ const boardSlice = createSlice({
   },
 });
 
+export const { toggle, deleteBoard } = boardSlice.actions;
 export { getBoardThunk };
 export default boardSlice.reducer;
