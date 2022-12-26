@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { getBoardThunk } from "../redux/modules/boardSlice";
 import { BoardColumn } from "../components";
+import { nanoid } from "@reduxjs/toolkit";
+
+console.log(nanoid);
 
 const HomeStyled = styled.main`
   max-width: 90rem;
@@ -11,7 +14,7 @@ const HomeStyled = styled.main`
   height: 100%;
   margin: 0 auto;
 
-  background-color: yellowgreen;
+  /* background-color: yellowgreen; */
 
   .kanban-container {
     display: flex;
@@ -29,10 +32,10 @@ const Home = () => {
   return (
     <HomeStyled>
       <div className="kanban-container">
-        <BoardColumn title="Schedule" />
-        <BoardColumn title="Progress" />
-        <BoardColumn title="QA" />
-        <BoardColumn title="End Schedule" />
+        <BoardColumn title="Schedule" category="todo" />
+        <BoardColumn title="Progress" category="working" />
+        <BoardColumn title="QA" category="validate" />
+        <BoardColumn title="Complete" category="complete" />
       </div>
     </HomeStyled>
   );

@@ -2,120 +2,151 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import CustomBtn from "./CustomBtn";
 import { deleteBoard } from "../redux/modules/boardSlice";
+import { Link } from "react-router-dom";
 
 const BoardItemBox = styled.div`
-  border: 0.0625rem solid gray;
+  border: 0.1875rem solid #aaa;
   border-radius: 1.25rem;
 
   max-width: 20rem;
-  min-height: 160px;
+  min-height: ß;
 
-  padding: 20px;
+  margin: 0 auto;
+  margin-bottom: 1.5625rem;
+  padding: 0.625rem 1.25rem 1.25rem 1.25rem;
+
+<<<<<<< HEAD
+  transition-duration: 0.3s;
+  :hover {
+    border: 0.1875rem solid #2563eb;
+  }
+
+  .boardTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: -0.625rem;
+  }
+
+  h2 {
+    margin-bottom: 0.625rem;
+    font-size: 1.25rem;
+  }
+
+  .closeBtn {
+    padding: 0 7px;
+=======
+  .boardTop {
+    display: flex;
+    justify-content: space-between;
+  }
 
   h2 {
     background-color: aqua;
     min-height: 4.375rem;
   }
 
-  .closeBox {
+  .closeBtn {
+>>>>>>> 1116bf55115514f4940b2cfbd9a0733cdfbaed12
     border: 0rem;
-    font-size: 24px;
+    font-size: 1.85rem;
+    transition-duration: 0.3s;
+    :hover {
+      color: #eb5a3d;
+    }
+  }
+
+  .detailBtn {
+    border: 0rem;
+    text-decoration: none;
+    color: black;
+  }
+
+  .manager {
+    font-size: 0.875rem;
+    font-weight: bold;
+  }
+
+  .content-box {
+    min-height: 100px;
+    height: 100%;
+
+    padding-top: 10px;
+    padding-left: 10px;
+
+    border: 1px solid #aaa;
+    border-radius: 10px;
+  }
+
+  .detailBtn {
+    border: 0rem;
+    text-decoration: none;
+    color: black;
   }
 `;
 
-// const Close = styled.button`
-//   border: 0rem;
-//   font-size: 24px;
-// `;
-
-// const TitleBox = styled.h2`
-//   background-color: aqua;
-//   min-height: 4.375rem;
-// `;
-
-const BoardItem = () => {
+<<<<<<< HEAD
+const BoardItem = ({ name, id, title, category, content }) => {
+=======
+const BoardItem = ({ name, id, title, category }) => {
+>>>>>>> 1116bf55115514f4940b2cfbd9a0733cdfbaed12
   const dispatch = useDispatch();
+  // console.log("ItemCard : ", name);
 
-  const propsinit = [
-    {
-      id: "vzSp-jzTXppJSSP3eLZ3k",
-      category: "working",
-      title: "진행 중 제목",
-      content: "보드 내용",
-      pw: "보드 비밀번호",
-      comments: [
-        {
-          id: "h-e0M_yaI40OgkHQv_0Yd",
-          name: "작성자 이름",
-          pw: "작성자 비밀번호",
-          comment: "댓글",
-        },
-      ],
-    },
-    {
-      id: "L1--H0Ob0NOMlfXUHt9r5",
-      category: "validate",
-      title: "QA 제목",
-      content: "보드 내용",
-      pw: "보드 비밀번호",
-      comments: [
-        {
-          id: "CP93RdIrJI_xPxj0AVvjd",
-          name: "작성자 이름",
-          pw: "작성자 비밀번호",
-          comment: "댓글",
-        },
-      ],
-    },
-  ];
+<<<<<<< HEAD
+=======
+  // const item = {
+  //   id: "z6ost9Sp0Lx7G9A0WGhvS",
+  //   name: "담당자 이름",
+  //   category: "todo",
+  //   title: "투두 제목 ",
+  //   content: "보드 내용",
+  //   pw: "보드 비밀번호",
+  // };
 
+>>>>>>> 1116bf55115514f4940b2cfbd9a0733cdfbaed12
   const onDelete = (id) => {
+    window.confirm("삭제하시겠습니까?");
     dispatch(deleteBoard(id));
   };
 
   return (
     <BoardItemBox>
-      <div> 담당자 </div>
-      <h2> {propsinit[0].title} </h2>
+      <div className="boardTop">
+<<<<<<< HEAD
+        <div className="manager"> 담당자 : {name} </div>
+=======
+        <div> 담당자 : {name} </div>
+>>>>>>> 1116bf55115514f4940b2cfbd9a0733cdfbaed12
+        <button
+          className="closeBtn"
+          onClick={() => {
+            onDelete(id);
+          }}>
+          x
+        </button>
+      </div>
+
+      <Link className="detailBtn" to={id}>
+        <h2> {title} </h2>
+<<<<<<< HEAD
+        {/*보드 내용 삽입*/}
+        <div className="content-box">
+          <p>{content}</p>
+        </div>
+        {/**/}
+=======
+>>>>>>> 1116bf55115514f4940b2cfbd9a0733cdfbaed12
+      </Link>
       <CustomBtn
-        category="progress"
-        BoardItemId={propsinit[0].id}
-        nameBtn="착수"
-      >
-        착수
-      </CustomBtn>
-      <CustomBtn category="back" BoardItemId={propsinit[0].id} nameBtn="번복">
-        번복
-      </CustomBtn>
+        name="nextCategory"
+        CurrentCategory={category}
+        BoardItemId={id}></CustomBtn>
       <CustomBtn
-        category="validate"
-        BoardItemId={propsinit[0].id}
-        nameBtn="검토"
-      >
-        검토
-      </CustomBtn>
-      <CustomBtn
-        category="complete"
-        BoardItemId={propsinit[0].id}
-        nameBtn="완료"
-      >
-        완료
-      </CustomBtn>
-      <CustomBtn
-        category="archive"
-        BoardItemId={propsinit[0].id}
-        nameBtn="저장"
-      >
-        저장
-      </CustomBtn>
-      <button
-        className="closeBtn"
-        onClick={() => {
-          onDelete(propsinit[0].id);
-        }}
-      >
-        x
-      </button>
+        name="prevCategory"
+        CurrentCategory={category}
+        BoardItemId={id}></CustomBtn>
     </BoardItemBox>
   );
 };

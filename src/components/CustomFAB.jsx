@@ -13,6 +13,10 @@ const CustomFABStyled = styled.button`
   position: fixed;
   right: 6rem;
   bottom: 6rem;
+  transition-duration: 0.5s;
+  &:hover {
+    transform: rotate(360deg) scale(1.15);
+  }
   .FAB-icon {
     width: 1.5rem;
     height: 1.5rem;

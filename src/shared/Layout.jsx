@@ -2,7 +2,7 @@ import styled, { createGlobalStyle } from "styled-components";
 
 const GlobalStyled = createGlobalStyle`
   /* CSS RESET */
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Noto+Sans+KR:wght@100;300;400;700&display=swap');
 
   * {
   margin: 0;
@@ -10,7 +10,6 @@ const GlobalStyled = createGlobalStyle`
   border: 0;
   font-size: 16px;
   font-weight: inherit;
-  font-family: 'Noto Sans KR', sans-serif;
   color: inherit;
   box-sizing: border-box;
   word-break: keep-all;

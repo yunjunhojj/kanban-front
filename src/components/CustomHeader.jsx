@@ -5,6 +5,8 @@ const CustomHeaderStyled = styled.header`
   background-color: #f8f8f8;
   width: 100%;
   height: 3.75rem;
+  margin-bottom: 50px;
+  padding: 50px 0;
   .Header-container {
     margin: 0 auto;
     max-width: 90rem;
@@ -14,10 +16,17 @@ const CustomHeaderStyled = styled.header`
     align-items: center;
     height: 100%;
     .Header-container-text {
+      margin: 0 15px;
       font-size: 1.25rem;
       line-height: 1.5rem;
       font-weight: 700;
       cursor: pointer;
+      &:hover {
+        color: #eb5a3d;
+      }
+    }
+    div.Header-container-text:hover {
+      color: #eb5a3d;
     }
   }
   .title {
@@ -36,8 +45,7 @@ const CustomHeader = () => {
         <a
           href="https://github.com/yunjunhojj/kanban-front/pulls"
           target="_blank"
-          rel="noopener noreferrer"
-        >
+          rel="noopener noreferrer">
           <div className="Header-container-text">Help</div>
         </a>
       </div>
