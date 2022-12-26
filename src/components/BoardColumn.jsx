@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getBoardThunk } from "../redux/modules/boardSlice";
 import styled from "styled-components";
+import BoardItem from "./BoardItem";
 
 const BoardColumnStyled = styled.div`
   max-width: 21.25rem;
@@ -31,12 +32,17 @@ const BoardColumn = (props) => {
     dispatch(getBoardThunk());
   }, [dispatch]);
 
+  //  <BoardColumn title="Schedule" /> title을 db.json의 category와 매칭시켜서 kanban의 위치를 지정함..
   const renderedBoardItems = boards.map((item) => {
-    return <li>{item.id}</li>;
+    console.log("item.category : ", item.category);
+    if (item.category === props.title) {
+      return <BoardItem {...item}></BoardItem>;
+    }
   });
 
   return (
     <BoardColumnStyled>
+      {/*Column title입니다.*/}
       <h3 className="title">{props.title}</h3>
       <ul>{renderedBoardItems}</ul>
     </BoardColumnStyled>

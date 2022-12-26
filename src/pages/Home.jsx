@@ -32,7 +32,7 @@ const Home = () => {
         <BoardColumn title="Schedule" />
         <BoardColumn title="Progress" />
         <BoardColumn title="QA" />
-        <BoardColumn title="End Schedule" />
+        <BoardColumn title="Complete" />
       </div>
     </HomeStyled>
   );

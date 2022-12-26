@@ -1,8 +1,8 @@
 {
   "boards": [
     {
-      "id": "z6ost9Sp0Lx7G9A0WGhvS",
-      "category": "todo",
+      "id": "z6ost9Sp0Lx7G9A0WGhvS(스케쥴 칸)",
+      "category": "Schedule",
       "title": "투두 제목 ",
       "content": "보드 내용",
       "pw": "보드 비밀번호",
@@ -16,8 +16,8 @@
       ]
     },
     {
-      "id": "vzSp-jzTXppJSSP3eLZ3k",
-      "category": "working",
+      "id": "vzSp-jzTXppJSSP3eLZ3k(프로그레스 칸)",
+      "category": "Progress",
       "title": "진행 중 제목",
       "content": "보드 내용",
       "pw": "보드 비밀번호",
@@ -31,8 +31,8 @@
       ]
     },
     {
-      "id": "L1--H0Ob0NOMlfXUHt9r5",
-      "category": "validate",
+      "id": "L1--H0Ob0NOMlfXUHt9r5(QA칸)",
+      "category": "QA",
       "title": "QA 제목",
       "content": "보드 내용",
       "pw": "보드 비밀번호",
@@ -46,7 +46,7 @@
       ]
     },
     {
-      "id": "pIIk2N5JxmP3iZwuZJDQD",
+      "id": "pIIk2N5JxmP3iZwuZJDQD(엔드 칸)",
       "category": "complete",
       "title": "완료 제목",
       "content": "보드 내용",
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "id": "QEK63i9tl9Z-6yH_rxO3n",
+      "id": "QEK63i9tl9Z-6yH_rxO3n(엔드 칸)",
       "category": "archive",
       "title": "찐완료 제목",
       "content": "보드 내용",
