@@ -55,6 +55,8 @@ const BoardItem = ({ name, id, title, category }) => {
     dispatch(deleteBoard(id));
   };
 
+  console.log(category);
+
   return (
     <BoardItemBox>
       <div className="boardTop">
@@ -77,12 +79,12 @@ const BoardItem = ({ name, id, title, category }) => {
       ></button>
       <h2> {title} </h2>
       <CustomBtn
-        name="nextCategory"
+        nameBtn="nextCategory"
         CurrentCategory={category}
         BoardItemId={id}
       ></CustomBtn>
       <CustomBtn
-        name="prevCategory"
+        nameBtn="prevCategory"
         CurrentCategory={category}
         BoardItemId={id}
       ></CustomBtn>
