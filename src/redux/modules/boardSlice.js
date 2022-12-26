@@ -7,6 +7,7 @@ const initialState = {
   boards: [],
   isLoading: false,
   error: null,
+  createBoardModalVisibility: false,
 };
 
 // thunk
@@ -15,10 +16,8 @@ const getBoardThunk = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const data = await axios.get(BASE_URL);
-      console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -41,7 +40,14 @@ const postBoardThunk = createAsyncThunk(
 const boardSlice = createSlice({
   name: "boards",
   initialState,
-  reducers: {},
+  reducers: {
+    showCreateBoardModal: (state) => {
+      state.createBoardModalVisibility = true;
+    },
+    hideCreateBoardModal: (state) => {
+      state.createBoardModalVisibility = false;
+    },
+  },
   extraReducers: (builder) => {
     // getBoard
     builder.addCase(getBoardThunk.pending, (state) => {
@@ -71,5 +77,7 @@ const boardSlice = createSlice({
   },
 });
 
+export const { showCreateBoardModal, hideCreateBoardModal } =
+  boardSlice.actions;
 export { getBoardThunk, postBoardThunk };
 export default boardSlice.reducer;

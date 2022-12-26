@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postBoardThunk } from "../redux/modules/boardSlice";
 import { useInput } from "../Hooks";
 import { nanoid } from "@reduxjs/toolkit";
+import { hideCreateBoardModal } from "../redux/modules/boardSlice";
 
 /**
  * 2개의 버튼을 병렬로 배치하고 사용하기 위해 form을 사용하지 않습니다.
@@ -18,10 +19,11 @@ const CreateBoardModalStyled = styled.div`
   height: 100vh;
   z-index: 1;
   background: rgba(0, 0, 0, 0.48);
-  display: flex;
+  display: ${(props) => (props.visibility ? "flex" : "none")};
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   .modal {
+    margin: 25vh 0 0;
     z-index: 2;
     background-color: #fff;
     width: 46.5rem;
@@ -78,6 +80,10 @@ const CreateBoardModal = () => {
   const [title, handleOnChangeTitle, resetTitle] = useInput("");
   const [content, handleOnChangeContent, resetContent] = useInput("");
 
+  const modalVisibility = useSelector(
+    (state) => state.boards.createBoardModalVisibility
+  );
+
   const resetAllInput = () => {
     resetName();
     resetPassword();
@@ -96,21 +102,23 @@ const CreateBoardModal = () => {
     };
     dispatch(postBoardThunk(newBoard));
     resetAllInput();
+    dispatch(hideCreateBoardModal());
   };
 
   const cancelPostBoard = () => {
     resetAllInput();
+    dispatch(hideCreateBoardModal());
   };
   return (
-    <CreateBoardModalStyled>
+    <CreateBoardModalStyled visibility={modalVisibility}>
       <div className="modal">
         <div className="user-info">
           <input
             className="modal-input user-info-item"
             type="text"
             placeholder="담당자 이름"
-            name=""
-            id=""
+            name="name"
+            id="name"
             value={name}
             onChange={(e) => handleOnChangeName(e)}
           />
@@ -118,38 +126,37 @@ const CreateBoardModal = () => {
             className="modal-input user-info-item"
             type="password"
             placeholder="비밀번호"
-            name=""
-            id=""
+            name="password"
+            id="password"
             value={password}
-            onClick={(e) => handleOnChangePassword(e)}
+            onChange={(e) => handleOnChangePassword(e)}
           />
         </div>
         <input
           className="modal-input"
           type="text"
           placeholder="제목"
-          name=""
-          id=""
+          name="title"
+          id="title"
           value={title}
-          onClick={(e) => handleOnChangeTitle(e)}
+          onChange={(e) => handleOnChangeTitle(e)}
         />
-        {/* <input type="text" placeholder="내용" name="" id="" /> */}
         <textarea
           className="modal-input text-area"
-          name=""
-          id=""
+          name="content"
+          id="content"
           placeholder="(내용)"
           value={content}
-          onClick={(e) => handleOnChangeContent(e)}
+          onChange={(e) => handleOnChangeContent(e)}
         ></textarea>
         <div className="modal-btn-container">
+          <button className="modal-btn-item" onClick={() => cancelPostBoard()}>
+            취소
+          </button>
           <button
             className="modal-btn-item"
             onClick={(e) => handleSubmitBoard(e)}
           >
-            취소
-          </button>
-          <button className="modal-btn-item" onClick={() => cancelPostBoard()}>
             저장
           </button>
         </div>
