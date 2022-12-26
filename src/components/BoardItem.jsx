@@ -4,24 +4,34 @@ import CustomBtn from "./CustomBtn";
 import { deleteBoard } from "../redux/modules/boardSlice";
 
 const BoardItemBox = styled.div`
-  border: 1px solid gray;
-  border-radius: 20px;
+  border: 0.0625rem solid gray;
+  border-radius: 1.25rem;
 
-  max-width: 320px;
-  min-height: 170px;
+  max-width: 20rem;
+  min-height: 160px;
 
   padding: 20px;
+
+  h2 {
+    background-color: aqua;
+    min-height: 4.375rem;
+  }
+
+  .closeBox {
+    border: 0rem;
+    font-size: 24px;
+  }
 `;
 
-const Close = styled.button`
-  border: 0px;
-  font-size: 24px;
-`;
+// const Close = styled.button`
+//   border: 0rem;
+//   font-size: 24px;
+// `;
 
-const TitleBox = styled.h2`
-  background-color: aqua;
-  min-height: 70px;
-`;
+// const TitleBox = styled.h2`
+//   background-color: aqua;
+//   min-height: 4.375rem;
+// `;
 
 const BoardItem = () => {
   const dispatch = useDispatch();
@@ -66,7 +76,7 @@ const BoardItem = () => {
   return (
     <BoardItemBox>
       <div> 담당자 </div>
-      <TitleBox> {propsinit[0].title} </TitleBox>
+      <h2> {propsinit[0].title} </h2>
       <CustomBtn
         category="progress"
         BoardItemId={propsinit[0].id}
@@ -98,13 +108,14 @@ const BoardItem = () => {
       >
         저장
       </CustomBtn>
-      <Close
+      <button
+        className="closeBtn"
         onClick={() => {
           onDelete(propsinit[0].id);
         }}
       >
         x
-      </Close>
+      </button>
     </BoardItemBox>
   );
 };

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { toggle } from "../redux/modules/boardSlice";
 
 const CustomBtnStyle = styled.button`
-  margin: 5px;
+  margin: 0.3125rem;
 `;
 
 const CustomBtn = ({ nameBtn, BoardItemId, category }) => {
