@@ -35,8 +35,9 @@ const BoardItemBox = styled.div`
   }
 `;
 
-const BoardItem = ({ item }) => {
+const BoardItem = ({ name, id, title, category }) => {
   const dispatch = useDispatch();
+  // console.log("ItemCard : ", name);
 
   // const item = {
   //   id: "z6ost9Sp0Lx7G9A0WGhvS",
@@ -55,30 +56,27 @@ const BoardItem = ({ item }) => {
   return (
     <BoardItemBox>
       <div className="boardTop">
-        <div> 담당자 : {item.name} </div>
+        <div> 담당자 : {name} </div>
         <button
           className="closeBtn"
           onClick={() => {
-            onDelete(item.id);
-          }}
-        >
+            onDelete(id);
+          }}>
           x
         </button>
       </div>
 
-      <Link className="detailBtn" to={item.id}>
-        <h2> {item.title} </h2>
+      <Link className="detailBtn" to={id}>
+        <h2> {title} </h2>
       </Link>
       <CustomBtn
         name="nextCategory"
-        CurrentCategory={item.category}
-        BoardItemId={item.id}
-      ></CustomBtn>
+        CurrentCategory={category}
+        BoardItemId={id}></CustomBtn>
       <CustomBtn
         name="prevCategory"
-        CurrentCategory={item.category}
-        BoardItemId={item.id}
-      ></CustomBtn>
+        CurrentCategory={category}
+        BoardItemId={id}></CustomBtn>
     </BoardItemBox>
   );
 };
