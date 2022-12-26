@@ -5,6 +5,7 @@ import styled from "styled-components";
 import {
   getCommentThunk,
   deleteCommentThunk,
+  editComment,
 } from "../redux/modules/commentSlice";
 
 const CommentReadStyled = styled.div`
@@ -25,6 +26,10 @@ function CommentRead() {
     dispatch(deleteCommentThunk(id));
   };
 
+  const handleEditComment = (id) => {
+    dispatch(editComment(id));
+  };
+
   if (error) return <div>{error.massage}</div>;
   if (!isLoading) {
     const renderedComments = comments
@@ -33,7 +38,7 @@ function CommentRead() {
         <div key={comment.id}>
           <div>작성자: {comment.name}</div>
           <div>댓글내용: {comment.comment}</div>
-          <button>편집</button>
+          <button onClick={() => handleEditComment(comment.id)}>편집</button>
           <button onClick={() => handleDeleteComment(comment.id)}>삭제</button>
         </div>
       ));
