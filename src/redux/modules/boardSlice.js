@@ -7,6 +7,7 @@ const initialState = {
   boards: [],
   isLoading: false,
   error: null,
+  createBoardModalVisibility: false,
 };
 
 // thunk
@@ -14,6 +15,20 @@ const getBoardThunk = createAsyncThunk(
   "board/getBoard",
   async (payload, thunkAPI) => {
     try {
+      const data = await axios.get(BASE_URL);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+const postBoardThunk = createAsyncThunk(
+  "board/postBoard",
+  async (payload, thunkAPI) => {
+    try {
+      await axios.post(BASE_URL, payload);
+
       const data = await axios.get(BASE_URL);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
@@ -41,6 +56,12 @@ const boardSlice = createSlice({
       axios.delete(`http://localhost:3001/boards/${action.payload}`);
       state.todos = state.boards.filter((board) => board.id !== action.payload);
     },
+    showCreateBoardModal: (state) => {
+      state.createBoardModalVisibility = true;
+    },
+    hideCreateBoardModal: (state) => {
+      state.createBoardModalVisibility = false;
+    },
   },
   extraReducers: (builder) => {
     // getBoard
@@ -56,10 +77,26 @@ const boardSlice = createSlice({
       state.error = action.payload;
     });
 
-    // builder
+    // postBoard
+    builder.addCase(postBoardThunk.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(postBoardThunk.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.boards = action.payload;
+    });
+    builder.addCase(postBoardThunk.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
   },
 });
 
-export const { toggle, deleteBoard } = boardSlice.actions;
-export { getBoardThunk };
+export const {
+  showCreateBoardModal,
+  hideCreateBoardModal,
+  toggle,
+  deleteBoard,
+} = boardSlice.actions;
+export { getBoardThunk, postBoardThunk };
 export default boardSlice.reducer;
