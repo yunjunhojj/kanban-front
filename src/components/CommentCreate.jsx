@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import { postCommentThunk, getBoardThunk } from "../redux/modules/boardSlice";
-// import axios from "axios";
-
+import { postCommentThunk } from "../redux/modules/commentSlice";
 const CommentCreateStyled = styled.div`
   border: 0.125rem solid black;
   padding: 3rem;
@@ -13,15 +11,7 @@ const CommentCreateStyled = styled.div`
 
 function CommentCreate() {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getBoardThunk());
-  }, [dispatch]);
   const id = useParams().id;
-  const { boards } = useSelector((state) => state.boards);
-  const currentBoard = boards.find((board) => {
-    return board.id === id;
-  });
 
   const [writer, setWriter] = useState("");
   const [comment, setComment] = useState("");
@@ -49,12 +39,8 @@ function CommentCreate() {
       comment,
       password,
     };
-    const copiedBoard = {
-      ...currentBoard,
-      comments: [...currentBoard.comments, newComment],
-    };
 
-    dispatch(postCommentThunk(copiedBoard));
+    dispatch(postCommentThunk(newComment));
 
     setWriter("");
     setComment("");
