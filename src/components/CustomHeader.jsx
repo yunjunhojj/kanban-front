@@ -25,13 +25,11 @@ const CustomHeaderStyled = styled.header`
     div.Header-container-text:hover {
       color: #eb5a3d;
     }
-    div.Header-container-text:hover {
-      color: #eb5a3d;
-    }
   }
   .title {
     /* TODO: 서비스 컬러를 선택하면 반영합니다. */
     color: #2563eb;
+    font-size: 32px;
   }
 `;
 
