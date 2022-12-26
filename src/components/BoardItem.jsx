@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import CustomBtn from "./CustomBtn";
 import { deleteBoard } from "../redux/modules/boardSlice";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const BoardItemBox = styled.div`
   border: 0.0625rem solid gray;
@@ -37,6 +38,7 @@ const BoardItemBox = styled.div`
 
 const BoardItem = ({ name, id, title, category }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // console.log("ItemCard : ", name);
 
   // const item = {
@@ -61,22 +63,29 @@ const BoardItem = ({ name, id, title, category }) => {
           className="closeBtn"
           onClick={() => {
             onDelete(id);
-          }}>
+          }}
+        >
           x
         </button>
       </div>
-
-      <Link className="detailBtn" to={id}>
-        <h2> {title} </h2>
-      </Link>
+      {/* navigate로 수정-희진 */}
+      <button
+        className="detailBtn"
+        onClick={() => {
+          navigate(`/${id}`);
+        }}
+      ></button>
+      <h2> {title} </h2>
       <CustomBtn
         name="nextCategory"
         CurrentCategory={category}
-        BoardItemId={id}></CustomBtn>
+        BoardItemId={id}
+      ></CustomBtn>
       <CustomBtn
         name="prevCategory"
         CurrentCategory={category}
-        BoardItemId={id}></CustomBtn>
+        BoardItemId={id}
+      ></CustomBtn>
     </BoardItemBox>
   );
 };

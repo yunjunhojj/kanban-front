@@ -8,7 +8,6 @@ const Detail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { boards } = useSelector((state) => state.boards);
-
   useEffect(() => {
     dispatch(getBoardThunk());
   }, [dispatch]);
