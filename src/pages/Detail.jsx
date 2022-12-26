@@ -2,21 +2,26 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getBoardThunk } from "../redux/modules/boardSlice";
+import { getCommentThunk } from "../redux/modules/commentSlice";
 import styled from "styled-components";
 // , { StyledComponent } from "styled-components";
 const Detail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { boards } = useSelector((state) => state.boards);
+  const { comments } = useSelector((state) => state.comments);
+
   useEffect(() => {
     dispatch(getBoardThunk());
+    dispatch(getCommentThunk());
   }, [dispatch]);
 
   // 이전 컴포넌트에서 받아온 파라미터 조회
   const params = useParams().id;
   const filteredBoard = boards.filter((item) => item.id === params);
   const board = filteredBoard[0];
-
+  const filteredComment = comments.filter((item) => item.boardId === params);
+  const comment = filteredComment[0];
   const prevPageHandle = () => {
     navigate("/");
   };
@@ -37,15 +42,15 @@ const Detail = () => {
         <div className="comment-container">
           {/* 코멘트 부분 */}
           <p className="comment-header">댓글</p>
-          {board?.comments.map((item) => {
+          {/* {board?.comments.map((item) => {
             return (
-              <>
-                <p className="comment-name">{item.name}</p>
-                <div className="comment-content">{item.comment}</div>
-                {/* <h4>댓글 작성자 id: {item.id}</h4> */}
-              </>
+              <> */}
+          <p className="comment-name">{comment?.writer}</p>
+          <div className="comment-content">{comment?.comment}</div>
+          {/* <h4>댓글 작성자 id: {item.id}</h4> */}
+          {/* </>
             );
-          })}
+          })} */}
           <button onClick={prevPageHandle}>(임시)이전페이지로 이동</button>
         </div>
       </StyledDiv>

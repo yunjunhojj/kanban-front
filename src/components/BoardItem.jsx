@@ -66,7 +66,9 @@ const BoardItem = ({ name, id, title, category }) => {
         onClick={() => {
           navigate(`/${id}`);
         }}
-      ></button>
+      >
+        [상세보기]
+      </button>
       <h2> {title} </h2>
       <CustomBtn
         nameBtn="nextCategory"
