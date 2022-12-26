@@ -39,16 +39,6 @@ const BoardItemBox = styled.div`
 const BoardItem = ({ name, id, title, category }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // console.log("ItemCard : ", name);
-
-  // const item = {
-  //   id: "z6ost9Sp0Lx7G9A0WGhvS",
-  //   name: "담당자 이름",
-  //   category: "todo",
-  //   title: "투두 제목 ",
-  //   content: "보드 내용",
-  //   pw: "보드 비밀번호",
-  // };
 
   const onDelete = (id) => {
     window.confirm("삭제하시겠습니까?");

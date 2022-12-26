@@ -25,6 +25,14 @@
       "pw": "보드 비밀번호"
     },
     {
+      "id": "pIIk2N5JxmP3iZwuZJDQD",
+      "name": "담당자 이름",
+      "category": "complete",
+      "title": "완료 제목",
+      "content": "보드 내용",
+      "pw": "보드 비밀번호"
+    },
+    {
       "id": "QEK63i9tl9Z-6yH_rxO3n",
       "name": "담당자 이름",
       "category": "archive",

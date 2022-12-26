@@ -41,8 +41,7 @@ const CustomHeader = () => {
         <a
           href="https://github.com/yunjunhojj/kanban-front/pulls"
           target="_blank"
-          rel="noopener noreferrer"
-        >
+          rel="noopener noreferrer">
           <div className="Header-container-text">Help</div>
         </a>
       </div>
