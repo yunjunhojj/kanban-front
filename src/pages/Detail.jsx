@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getBoardThunk } from "../redux/modules/boardSlice";
 import styled from "styled-components";
+import Modal from "../components/Modal/Modal";
 // , { StyledComponent } from "styled-components";
 const Detail = () => {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ const Detail = () => {
         <hr className="line"></hr>
         <div className="comment-container">
           {/* 코멘트 부분 */}
+          <Modal />
           <p className="comment-header">댓글</p>
           {board?.comments.map((item) => {
             return (
