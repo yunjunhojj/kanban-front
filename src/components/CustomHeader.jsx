@@ -21,6 +21,9 @@ const CustomHeaderStyled = styled.header`
       line-height: 1.5rem;
       font-weight: 700;
       cursor: pointer;
+      &:hover {
+        color: #eb5a3d;
+      }
     }
     div.Header-container-text:hover {
       color: #eb5a3d;

@@ -15,6 +15,7 @@ const BoardItemBox = styled.div`
   margin-bottom: 1.5625rem;
   padding: 0.625rem 1.25rem 1.25rem 1.25rem;
 
+<<<<<<< HEAD
   transition-duration: 0.3s;
   :hover {
     border: 0.1875rem solid #2563eb;
@@ -35,6 +36,19 @@ const BoardItemBox = styled.div`
 
   .closeBtn {
     padding: 0 7px;
+=======
+  .boardTop {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  h2 {
+    background-color: aqua;
+    min-height: 4.375rem;
+  }
+
+  .closeBtn {
+>>>>>>> 1116bf55115514f4940b2cfbd9a0733cdfbaed12
     border: 0rem;
     font-size: 1.85rem;
     transition-duration: 0.3s;
@@ -64,11 +78,34 @@ const BoardItemBox = styled.div`
     border: 1px solid #aaa;
     border-radius: 10px;
   }
+
+  .detailBtn {
+    border: 0rem;
+    text-decoration: none;
+    color: black;
+  }
 `;
 
+<<<<<<< HEAD
 const BoardItem = ({ name, id, title, category, content }) => {
+=======
+const BoardItem = ({ name, id, title, category }) => {
+>>>>>>> 1116bf55115514f4940b2cfbd9a0733cdfbaed12
   const dispatch = useDispatch();
+  // console.log("ItemCard : ", name);
 
+<<<<<<< HEAD
+=======
+  // const item = {
+  //   id: "z6ost9Sp0Lx7G9A0WGhvS",
+  //   name: "담당자 이름",
+  //   category: "todo",
+  //   title: "투두 제목 ",
+  //   content: "보드 내용",
+  //   pw: "보드 비밀번호",
+  // };
+
+>>>>>>> 1116bf55115514f4940b2cfbd9a0733cdfbaed12
   const onDelete = (id) => {
     window.confirm("삭제하시겠습니까?");
     dispatch(deleteBoard(id));
@@ -77,7 +114,11 @@ const BoardItem = ({ name, id, title, category, content }) => {
   return (
     <BoardItemBox>
       <div className="boardTop">
+<<<<<<< HEAD
         <div className="manager"> 담당자 : {name} </div>
+=======
+        <div> 담당자 : {name} </div>
+>>>>>>> 1116bf55115514f4940b2cfbd9a0733cdfbaed12
         <button
           className="closeBtn"
           onClick={() => {
@@ -89,11 +130,14 @@ const BoardItem = ({ name, id, title, category, content }) => {
 
       <Link className="detailBtn" to={id}>
         <h2> {title} </h2>
+<<<<<<< HEAD
         {/*보드 내용 삽입*/}
         <div className="content-box">
           <p>{content}</p>
         </div>
         {/**/}
+=======
+>>>>>>> 1116bf55115514f4940b2cfbd9a0733cdfbaed12
       </Link>
       <CustomBtn
         name="nextCategory"
