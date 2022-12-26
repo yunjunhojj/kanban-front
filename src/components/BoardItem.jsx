@@ -70,6 +70,7 @@ const BoardItem = () => {
   ];
 
   const onDelete = (id) => {
+    window.confirm("삭제하시겠습니까?");
     dispatch(deleteBoard(id));
   };
 
