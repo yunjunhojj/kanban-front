@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import boards from "../modules/boardSlice";
-import comment from "../modules/comment";
+import comments from "../modules/commentSlice";
 
 const store = configureStore({
   reducer: {
     boards,
-    comment,
+    comments,
   },
 });
 
