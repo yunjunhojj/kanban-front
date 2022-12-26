@@ -41,6 +41,21 @@ const boardSlice = createSlice({
   name: "boards",
   initialState,
   reducers: {
+    toggle: (state, action) => {
+      axios.patch(`http://localhost:3001/boards/${action.payload[0]}`, {
+        category: action.payload[1],
+      });
+
+      state.boards.forEach((todo) => {
+        if (todo.id == action.payload) {
+          todo.category = action.payload[1];
+        }
+      });
+    },
+    deleteBoard: (state, action) => {
+      axios.delete(`http://localhost:3001/boards/${action.payload}`);
+      state.todos = state.boards.filter((board) => board.id !== action.payload);
+    },
     showCreateBoardModal: (state) => {
       state.createBoardModalVisibility = true;
     },
@@ -77,7 +92,11 @@ const boardSlice = createSlice({
   },
 });
 
-export const { showCreateBoardModal, hideCreateBoardModal } =
-  boardSlice.actions;
+export const {
+  showCreateBoardModal,
+  hideCreateBoardModal,
+  toggle,
+  deleteBoard,
+} = boardSlice.actions;
 export { getBoardThunk, postBoardThunk };
 export default boardSlice.reducer;
