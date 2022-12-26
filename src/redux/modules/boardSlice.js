@@ -29,6 +29,37 @@ const boardSlice = createSlice({
   initialState,
   reducers: {
     toggle: (state, action) => {
+      const categoryList = [
+        "todo",
+        "working",
+        "validate",
+        "complete",
+        "archive",
+      ];
+
+      if (action.payload[0] == "nextCategory") {
+        const nextStep = categoryList[++action.payload[2]];
+        axios.patch(`http://localhost:3001/boards/${action.payload[1]}`, {
+          category: nextStep,
+        });
+
+        state.boards.forEach((todo) => {
+          if (todo.id == action.payload[1]) {
+            todo.category = categoryList[action.payload[2]];
+          }
+        });
+      } else {
+        const prevStep = categoryList[--action.payload[2]];
+        axios.patch(`http://localhost:3001/boards/${action.payload[1]}`, {
+          category: prevStep,
+        });
+
+        state.boards.forEach((todo) => {
+          if (todo.id == action.payload[1]) {
+            todo.category = categoryList[action.payload[2]];
+          }
+        });
+      }
       axios.patch(`http://localhost:3001/boards/${action.payload[0]}`, {
         category: action.payload[1],
       });
@@ -41,7 +72,10 @@ const boardSlice = createSlice({
     },
     deleteBoard: (state, action) => {
       axios.delete(`http://localhost:3001/boards/${action.payload}`);
-      state.todos = state.boards.filter((board) => board.id !== action.payload);
+      console.log(action.payload);
+      state.boards = state.boards.filter(
+        (board) => board.id !== action.payload
+      );
     },
   },
   extraReducers: (builder) => {

@@ -6,16 +6,27 @@ const CustomBtnStyle = styled.button`
   margin: 0.3125rem;
 `;
 
-const CustomBtn = ({ nameBtn, BoardItemId, category }) => {
+const CustomBtn = ({ nameBtn, BoardItemId, CurrentCategory }) => {
   const dispatch = useDispatch();
 
-  const onToggle = (BoardItemId, category) => {
-    dispatch(toggle([BoardItemId, category]));
+  const onToggle = (BoardItemId, category, nameBtn) => {
+    dispatch(toggle([BoardItemId, category, nameBtn]));
   };
 
+  const categoryList = ["todo", "working", "validate", "complete", "archive"];
+
+  const categoryList_Kr = ["착수", "검토", "완료", "저장", "번복"];
+
   return (
-    <CustomBtnStyle onClick={() => onToggle(BoardItemId, category)}>
-      {nameBtn}
+    <CustomBtnStyle
+      name={nameBtn}
+      onClick={() =>
+        onToggle(nameBtn, BoardItemId, categoryList.indexOf(CurrentCategory))
+      }
+    >
+      {nameBtn === "nextCategory"
+        ? categoryList_Kr[categoryList.indexOf(CurrentCategory)]
+        : "번복"}
     </CustomBtnStyle>
   );
 };
