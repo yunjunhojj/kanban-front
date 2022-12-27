@@ -42,15 +42,9 @@ function CommentRead() {
           <button onClick={() => handleDeleteComment(comment.id)}>삭제</button>
         </div>
       ));
-
     return (
       <CommentReadStyled>
-        <div>
-          <p>작성자</p>
-          <p>댓글내용</p>
-        </div>
-
-        <div>{comments ? renderedComments : "댓글이 없습니다."}</div>
+        <div>{comments.length ? renderedComments : "댓글이 없습니다."}</div>
       </CommentReadStyled>
     );
   }
