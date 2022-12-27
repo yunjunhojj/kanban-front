@@ -1,18 +1,23 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Home, NotFound } from "../pages";
-// import {} from -
-// import Layout from "./Layout.jsx"
+import { Home, NotFound, Detail } from "../pages";
+import Layout from "./Layout.jsx";
+import CustomHeader from "../components/CustomHeader";
+import CustomFooter from "../components/CustomFooter";
+import CustomFAB from "../components/CustomFAB";
 
 const Router = () => {
   return (
     <BrowserRouter>
-      {/* Layout Comp*/}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        {/* <Route path="/:id" element={<Detail />} /> */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      {/* /Layout Comp*/}
+      <Layout>
+        <CustomHeader />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/:id" element={<Detail />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Layout>
+      <CustomFAB />
+      <CustomFooter />
     </BrowserRouter>
   );
 };

@@ -1,20 +1,44 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import styled, { StyledComponent } from "styled-components";
+import styled from "styled-components";
 import { getBoardThunk } from "../redux/modules/boardSlice";
+import { BoardColumn } from "../components";
+import { nanoid } from "@reduxjs/toolkit";
+
+console.log(nanoid);
+
+const HomeStyled = styled.main`
+  max-width: 90rem;
+  min-height: 81.1vh;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+
+  /* background-color: yellowgreen; */
+
+  .kanban-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+`;
+
+const BoardCard = () => {
+  return <div></div>;
+};
 
 const Home = () => {
-  const dispatch = useDispatch();
-
-  const { isLoading, error, boards } = useSelector((state) => state.boards);
-  useEffect(() => {
-    dispatch(getBoardThunk());
-  }, [dispatch]);
-  console.log("isLoading", isLoading);
-  console.log("error", error);
-  console.log("boards", boards);
-
-  return <div>가나다</div>;
+  return (
+    <HomeStyled>
+      <div className="kanban-container">
+        <BoardColumn title="Schedule" category="todo" />
+        <BoardColumn title="Progress" category="working" />
+        <BoardColumn title="QA" category="validate" />
+        <BoardColumn title="Complete" category="complete" />
+      </div>
+    </HomeStyled>
+  );
 };
 
 export default Home;
