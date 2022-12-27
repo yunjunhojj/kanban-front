@@ -113,7 +113,6 @@ function CommentCreate() {
       password: password,
     };
 
-    console.log(editTextSave);
     dispatch(patchCommentThunk(editTextSave));
     dispatch(emptyComment());
     setWriter("");

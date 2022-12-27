@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3001/comments";
+const BASE_URL = "https://mountain-shade-brain.glitch.me/boards";
 
 const getCommentThunk = createAsyncThunk(
   "comment/getComment",
@@ -32,7 +32,6 @@ const postCommentThunk = createAsyncThunk(
 const patchCommentThunk = createAsyncThunk(
   "comment/patchComment",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       await axios.patch(`${BASE_URL}/${payload.id}`, payload);
 

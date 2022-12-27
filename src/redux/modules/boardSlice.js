@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3001/boards";
+const BASE_URL = "https://mountain-shade-brain.glitch.me/boards";
 
 const initialState = {
   boards: [],
@@ -52,7 +52,6 @@ const patchBoardThunk = createAsyncThunk(
 const deleteBoardThunk = createAsyncThunk(
   "Board/deleteBoard",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       await axios.delete(`${BASE_URL}/${payload}`);
       return thunkAPI.fulfillWithValue(payload);

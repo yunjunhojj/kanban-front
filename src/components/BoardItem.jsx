@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import CustomBtn from "./CustomBtn";
-import { deleteBoard, deleteBoardThunk } from "../redux/modules/boardSlice";
+import { deleteBoardThunk } from "../redux/modules/boardSlice";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 const BoardItemBox = styled.div`
   border: 0.1875rem solid #aaa;
@@ -77,8 +76,6 @@ const BoardItem = ({ name, id, title, category, content }) => {
     }
   };
 
-  console.log(category);
-
   return (
     <BoardItemBox>
       <div className="boardTop">
@@ -103,10 +100,9 @@ const BoardItem = ({ name, id, title, category, content }) => {
       </button>
       <h2> {title} </h2>
       {/*보드 내용 삽입*/}
-        <div className="content-box">
-          <p>{content}</p>
-        </div>
-      
+      <div className="content-box">
+        <p>{content}</p>
+      </div>
 
       <CustomBtn
         nameBtn="nextCategory"
