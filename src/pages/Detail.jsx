@@ -14,7 +14,7 @@ const Detail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { boards } = useSelector((state) => state.boards);
-  // const { comments } = useSelector((state) => state.comments);
+  const { comments } = useSelector((state) => state.comments);
 
   useEffect(() => {
     dispatch(getBoardThunk());
@@ -67,20 +67,19 @@ const Detail = () => {
   };
 
   const categoryLabel = () => {
-    if (board?.category === "todo") {
+    if (board?.category == "todo") {
       return `해야할 일`;
     }
-    if (board?.category === "working") {
+    if (board?.category == "working") {
       return `진행중`;
     }
-    if (board?.category === "validate") {
+    if (board?.category == "validate") {
       return `검토중`;
     }
-    if (board?.category === "complete") {
+    if (board?.category == "complete") {
       return `완료`;
     }
   };
-
   return (
     <>
       <StyledDiv>
@@ -95,22 +94,20 @@ const Detail = () => {
             <span className="category">{categoryLabel()}</span>
             {/* 보드내용 */}
           </div>
-          {editable ? (
-            <form onSubmit={editBoardHandler}>
-              <input
-                className="board-content"
-                value={content}
-                onChange={boardContentChangeHandler}
-              ></input>
-              <button type="submit">저장</button>
-            </form>
-          ) : (
-            <>
+          <form onSubmit={editBoardHandler}>
+            {editable ? (
+              <>
+                <input
+                  className="board-content"
+                  value={content}
+                  onChange={boardContentChangeHandler}></input>
+                <button>저장</button>
+              </>
+            ) : (
               <div className="board-content">{board?.content}</div>
-              <button onClick={() => editOn()}>편집</button>
-            </>
-          )}
-
+            )}
+          </form>
+          <button onClick={() => editOn()}>편집</button>
           <button onClick={deleteBoardHandler} value={board?.id}>
             삭제
           </button>
