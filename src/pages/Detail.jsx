@@ -14,7 +14,7 @@ const Detail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { boards } = useSelector((state) => state.boards);
-  const { comments } = useSelector((state) => state.comments);
+  // const { comments } = useSelector((state) => state.comments);
 
   useEffect(() => {
     dispatch(getBoardThunk());
@@ -30,7 +30,8 @@ const Detail = () => {
   const [editable, setEditable] = useState(false);
   // 편집 상태 변경 함수
   const editOn = () => {
-    setEditable(true);
+    setEditable(!editable);
+    setContent("");
   };
   // 상세페이지 보드 삭제 버튼 이벤트 핸들러
   const deleteBoardHandler = (event) => {
@@ -95,7 +96,8 @@ const Detail = () => {
             <span className="category">{categoryLabel()}</span>
             {/* 보드내용 */}
           </div>
-          {editable ? (
+          {editable ? (      
+            <>
             <form onSubmit={editBoardHandler}>
               <input
                 className="board-content"
@@ -105,6 +107,8 @@ const Detail = () => {
                 <StyledBtn type="submit">저장</StyledBtn>
               </div>
             </form>
+            <button onClick={() => editOn()}>취소</button>
+            </>
           ) : (
             <>
               <div className="board-content">{board?.content}</div>
