@@ -4,6 +4,7 @@ import { postBoardThunk } from "../redux/modules/boardSlice";
 import { useInput } from "../Hooks";
 import { nanoid } from "@reduxjs/toolkit";
 import { hideCreateBoardModal } from "../redux/modules/boardSlice";
+import { useBodyScrollLock } from "../Hooks";
 
 /**
  * 2개의 버튼을 병렬로 배치하고 사용하기 위해 form을 사용하지 않습니다.
@@ -74,6 +75,8 @@ const CreateBoardModalStyled = styled.div`
 `;
 
 const CreateBoardModal = () => {
+  const { openScroll } = useBodyScrollLock();
+
   const dispatch = useDispatch();
   const [name, handleOnChangeName, resetName] = useInput("");
   const [password, handleOnChangePassword, resetPassword] = useInput("");
@@ -104,11 +107,13 @@ const CreateBoardModal = () => {
     dispatch(postBoardThunk(newBoard));
     resetAllInput();
     dispatch(hideCreateBoardModal());
+    openScroll();
   };
 
   const cancelPostBoard = () => {
     resetAllInput();
     dispatch(hideCreateBoardModal());
+    openScroll();
   };
   return (
     <CreateBoardModalStyled visibility={modalVisibility ? "show" : null}>
@@ -148,14 +153,16 @@ const CreateBoardModal = () => {
           id="content"
           placeholder="(내용)"
           value={content}
-          onChange={(e) => handleOnChangeContent(e)}></textarea>
+          onChange={(e) => handleOnChangeContent(e)}
+        ></textarea>
         <div className="modal-btn-container">
           <button className="modal-btn-item" onClick={() => cancelPostBoard()}>
             취소
           </button>
           <button
             className="modal-btn-item"
-            onClick={(e) => handleSubmitBoard(e)}>
+            onClick={(e) => handleSubmitBoard(e)}
+          >
             저장
           </button>
         </div>

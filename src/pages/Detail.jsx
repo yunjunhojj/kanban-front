@@ -4,10 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getBoardThunk } from "../redux/modules/boardSlice";
 import { getCommentThunk } from "../redux/modules/commentSlice";
 import styled from "styled-components";
-// import CommentRead from "../components/CommentRead";
-import CommentCreate from "../components/CommentRead";
+import { CommentRead, CommentCreate } from "../components";
 
-// , { StyledComponent } from "styled-components";
 const Detail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -47,7 +45,8 @@ const Detail = () => {
           <div className="board-content">{board?.content}</div>
         </div>
         <hr className="line"></hr>
-        <CommentCreate></CommentCreate>
+        <CommentCreate />
+        <CommentRead />
       </StyledDiv>
     </>
   );
@@ -108,6 +107,7 @@ const StyledDiv = styled.div`
     height: 0.25rem;
     width: 100%;
     background-color: grey;
+    margin: 0 0 3rem;
   }
 `;
 
