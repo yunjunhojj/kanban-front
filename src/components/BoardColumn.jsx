@@ -57,15 +57,20 @@ const BoardColumn = (props) => {
     dispatch(getBoardThunk());
   }, [dispatch]);
 
-  //  <BoardColumn category="Schedule" /> prop으로 내려운 category와 db.json의 category와 매칭시켜서 kanban의 위치를 지정함..
-  const renderedBoardItems = boards.map((item) => {
-    console.log("item.category : ", item.category);
+  let renderedBoardItems = null;
 
-    if (item.category === props.category) {
-      return <BoardItem {...item} key={nanoid()}></BoardItem>;
-    }
-    return null;
-  });
+  if (!isLoading) {
+    renderedBoardItems = boards.map((item) => {
+      console.log("item.category : ", item.category);
+
+      if (item.category === props.category) {
+        return <BoardItem {...item} key={nanoid()}></BoardItem>;
+      }
+      return null;
+    });
+  }
+
+  //  <BoardColumn category="Schedule" /> prop으로 내려운 category와 db.json의 category와 매칭시켜서 kanban의 위치를 지정함..
 
   return (
     <BoardColumnStyled>

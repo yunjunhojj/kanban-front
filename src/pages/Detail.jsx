@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getBoardThunk, deleteBoardThunk, getBoardThunk, patchBoardThunk, } from "../redux/modules/boardSlice";
+import {
+  deleteBoardThunk,
+  getBoardThunk,
+  patchBoardThunk,
+} from "../redux/modules/boardSlice";
 import { getCommentThunk } from "../redux/modules/commentSlice";
 import styled from "styled-components";
 import { CommentRead, CommentCreate } from "../components";
@@ -61,6 +65,21 @@ const Detail = () => {
   const prevPageHandle = () => {
     navigate("/");
   };
+
+  const categoryLabel = () => {
+    if (board?.category == "todo") {
+      return `해야할 일`;
+    }
+    if (board?.category == "working") {
+      return `진행중`;
+    }
+    if (board?.category == "validate") {
+      return `검토중`;
+    }
+    if (board?.category == "complete") {
+      return `완료`;
+    }
+  };
   return (
     <>
       <StyledDiv>
@@ -68,12 +87,12 @@ const Detail = () => {
           {/* 제목 */}
           <p className="title">{board?.title}</p>
 
-<div className="board-card-info">
-          {/* 담당자 */}
-          <span className="director">{board?.name}</span>
-          {/* 단계 */}
-          <span className="category">{board?.category}</span>
-          {/* 보드내용 */}
+          <div className="board-card-info">
+            {/* 담당자 */}
+            <span className="director">{board?.name}</span>
+            {/* 단계 */}
+            <span className="category">{categoryLabel()}</span>
+            {/* 보드내용 */}
           </div>
           <form onSubmit={editBoardHandler}>
             {editable ? (
@@ -81,8 +100,7 @@ const Detail = () => {
                 <input
                   className="board-content"
                   value={content}
-                  onChange={boardContentChangeHandler}
-                ></input>
+                  onChange={boardContentChangeHandler}></input>
                 <button>저장</button>
               </>
             ) : (
@@ -104,7 +122,6 @@ const Detail = () => {
   );
 };
 const StyledDiv = styled.div`
-
   max-width: 90rem;
   min-height: 74.85vh;
 
