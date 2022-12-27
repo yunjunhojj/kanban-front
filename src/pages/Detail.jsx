@@ -4,6 +4,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getBoardThunk } from "../redux/modules/boardSlice";
 import { getCommentThunk } from "../redux/modules/commentSlice";
 import styled from "styled-components";
+import CommentRead from "../components/CommentRead";
+import CommentCreate from "../components/CommentRead";
+
 // , { StyledComponent } from "styled-components";
 const Detail = () => {
   const dispatch = useDispatch();
@@ -41,27 +44,14 @@ const Detail = () => {
           <div className="board-content">{board?.content}</div>
         </div>
         <hr className="line"></hr>
-        <div className="comment-container">
-          {/* 코멘트 부분 */}
-          <p className="comment-header">댓글</p>
-          {/* {board?.comments.map((item) => {
-            return (
-              <> */}
-          <p className="comment-name">{comment?.writer}</p>
-          <div className="comment-content">{comment?.comment}</div>
-          {/* <h4>댓글 작성자 id: {item.id}</h4> */}
-          {/* </>
-            );
-          })} */}
-          <button onClick={prevPageHandle}>(임시)이전페이지로 이동</button>
-        </div>
+        <CommentCreate></CommentCreate>
       </StyledDiv>
     </>
   );
 };
 const StyledDiv = styled.div`
   max-width: 90rem;
-  min-height: 81.1vh;
+  min-height: 74.85vh;
   width: 100%;
   height: 100%;
   margin: 0 auto;

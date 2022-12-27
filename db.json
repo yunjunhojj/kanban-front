@@ -25,57 +25,21 @@
       "pw": "보드 비밀번호"
     },
     {
-      "id": "pIIk2N5JxmP3iZwuZJDQD",
-      "name": "담당자 이름",
-      "category": "complete",
-      "title": "완료 제목",
-      "content": "보드 내용",
-      "pw": "보드 비밀번호"
-    },
-    {
       "id": "QEK63i9tl9Z-6yH_rxO3n",
       "name": "담당자 이름",
-      "category": "archive",
+      "category": "complete",
       "title": "찐완료 제목",
       "content": "보드 내용",
       "pw": "보드 비밀번호"
+    },
+    {
+      "id": "dk7SoSM-jjAnbKXLQMH5A",
+      "name": "박휘인",
+      "category": "validate",
+      "title": "안녕하세요",
+      "content": "반갑습니다.",
+      "password": "1234"
     }
   ],
-  "comments": [
-    {
-      "id": "quNBJ64A3Up7YmKMWQ3Ru",
-      "boardId": "z6ost9Sp0Lx7G9A0WGhvS",
-      "writer": "작성자 이름",
-      "password": "작성자 비밀번호",
-      "comment": "댓글"
-    },
-    {
-      "id": "i6lr-LeOKQBKx1SKt7N_m",
-      "boardId": "vzSp-jzTXppJSSP3eLZ3k",
-      "writer": "작성자 이름",
-      "password": "작성자 비밀번호",
-      "comment": "댓글"
-    },
-    {
-      "id": "CP93RdIrJI_xPxj0AVvjd",
-      "boardId": "L1--H0Ob0NOMlfXUHt9r5",
-      "name": "작성자 이름",
-      "password": "작성자 비밀번호",
-      "comment": "댓글"
-    },
-    {
-      "id": "cV9ji9yDAAlpsAgq9MPiD",
-      "boardId": "pIIk2N5JxmP3iZwuZJDQD",
-      "name": "adfsdf",
-      "comment": "adfsdfs",
-      "password": "1234"
-    },
-    {
-      "id": "5hI2lZIghImL_6yKYkVHA",
-      "boardId": "z6ost9Sp0Lx7G9A0WGhvS",
-      "name": "5555",
-      "comment": "55555",
-      "password": "1234"
-    }
-  ]
+  "comments": []
 }

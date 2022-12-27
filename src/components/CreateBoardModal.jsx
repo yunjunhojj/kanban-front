@@ -97,6 +97,7 @@ const CreateBoardModal = () => {
       id: nanoid(),
       name,
       title,
+      category: `todo`,
       content,
       password,
     };
@@ -110,7 +111,7 @@ const CreateBoardModal = () => {
     dispatch(hideCreateBoardModal());
   };
   return (
-    <CreateBoardModalStyled visibility={modalVisibility}>
+    <CreateBoardModalStyled visibility={modalVisibility ? "show" : null}>
       <div className="modal">
         <div className="user-info">
           <input
@@ -147,16 +148,14 @@ const CreateBoardModal = () => {
           id="content"
           placeholder="(내용)"
           value={content}
-          onChange={(e) => handleOnChangeContent(e)}
-        ></textarea>
+          onChange={(e) => handleOnChangeContent(e)}></textarea>
         <div className="modal-btn-container">
           <button className="modal-btn-item" onClick={() => cancelPostBoard()}>
             취소
           </button>
           <button
             className="modal-btn-item"
-            onClick={(e) => handleSubmitBoard(e)}
-          >
+            onClick={(e) => handleSubmitBoard(e)}>
             저장
           </button>
         </div>
