@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import CustomBtn from "./CustomBtn";
-import { deleteBoard } from "../redux/modules/boardSlice";
+import { deleteBoardThunk } from "../redux/modules/boardSlice";
 import { Link } from "react-router-dom";
 
 const BoardItemBox = styled.div`
@@ -70,8 +70,9 @@ const BoardItem = ({ name, id, title, category, content }) => {
   const dispatch = useDispatch();
 
   const onDelete = (id) => {
-    window.confirm("삭제하시겠습니까?");
-    dispatch(deleteBoard(id));
+    if (window.confirm("삭제하시겠습니까?")) {
+      dispatch(deleteBoardThunk(id));
+    }
   };
 
   return (
