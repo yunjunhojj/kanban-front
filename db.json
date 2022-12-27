@@ -1,74 +1,45 @@
 {
   "boards": [
     {
-      "id": "z6ost9Sp0Lx7G9A0WGhvS",
-      "name": "담당자 이름",
-      "category": "todo",
-      "title": "투두 제목 ",
-      "content": "보드 내용",
-      "pw": "보드 비밀번호"
-    },
-    {
-      "id": "vzSp-jzTXppJSSP3eLZ3k",
-      "name": "담당자 이름",
-      "category": "working",
-      "title": "진행 중 제목",
-      "content": "보드 내용",
-      "pw": "보드 비밀번호"
-    },
-    {
       "id": "L1--H0Ob0NOMlfXUHt9r5",
       "name": "담당자 이름",
-      "category": "validate",
+      "category": "complete",
       "title": "QA 제목",
       "content": "보드 내용",
       "pw": "보드 비밀번호"
     },
     {
-      "id": "pIIk2N5JxmP3iZwuZJDQD",
-      "name": "담당자 이름",
-      "category": "complete",
-      "title": "완료 제목",
-      "content": "보드 내용",
-      "pw": "보드 비밀번호"
+      "id": "dk7SoSM-jjAnbKXLQMH5A",
+      "name": "박휘인",
+      "category": "validate",
+      "title": "안녕하세요",
+      "content": "반갑습니다.",
+      "password": "1234"
     },
     {
-      "id": "QEK63i9tl9Z-6yH_rxO3n",
-      "name": "담당자 이름",
+      "id": "eiZ6TT37NzNKEsXOl0-mj",
+      "name": "박휘인",
+      "title": "12월 27일",
+      "category": "todo",
+      "content": "점심 : 바게트",
+      "password": "1234"
+    },
+    {
+      "id": "LhLTPagzYrmZGHBAfI2RJ",
+      "name": "송중기",
+      "title": "여자친구 발표",
       "category": "archive",
-      "title": "찐완료 제목",
-      "content": "보드 내용",
-      "pw": "보드 비밀번호"
+      "content": "영국인입니다.",
+      "password": "1234"
+    },
+    {
+      "id": "eML1Ky8lglX83gnxlQzlr",
+      "name": "박휘인",
+      "title": "부산 날씨",
+      "category": "working",
+      "content": "추움\n",
+      "password": "111"
     }
   ],
-  "comments": [
-    {
-      "id": "quNBJ64A3Up7YmKMWQ3Ru",
-      "boardId": "z6ost9Sp0Lx7G9A0WGhvS",
-      "writer": "작성자 이름",
-      "password": "작성자 비밀번호",
-      "comment": "댓글 테스트1"
-    },
-    {
-      "id": "i6lr-LeOKQBKx1SKt7N_m",
-      "boardId": "vzSp-jzTXppJSSP3eLZ3k",
-      "writer": "작성자 이름",
-      "password": "작성자 비밀번호",
-      "comment": "댓글 테스트2"
-    },
-    {
-      "id": "CP93RdIrJI_xPxj0AVvjd",
-      "boardId": "L1--H0Ob0NOMlfXUHt9r5",
-      "writer": "작성자 이름",
-      "password": "작성자 비밀번호",
-      "comment": "댓글댓글"
-    },
-    {
-      "id": "5hI2lZIghImL_6yKYkVHA",
-      "boardId": "z6ost9Sp0Lx7G9A0WGhvS",
-      "writer": "5555",
-      "comment": "55555",
-      "password": "1234"
-    }
-  ]
+  "comments": []
 }

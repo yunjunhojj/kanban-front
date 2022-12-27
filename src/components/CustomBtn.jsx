@@ -1,16 +1,21 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { toggle } from "../redux/modules/boardSlice";
+import { patchCategoryThunk } from "../redux/modules/boardSlice";
 
 const CustomBtnStyle = styled.button`
   margin: 0.3125rem;
+  font-size: 12px;
+  :hover {
+    color: #eb5a3d;
+  }
 `;
 
 const CustomBtn = ({ nameBtn, BoardItemId, CurrentCategory }) => {
   const dispatch = useDispatch();
 
-  const onToggle = (BoardItemId, category, nameBtn) => {
-    dispatch(toggle([BoardItemId, category, nameBtn]));
+
+  const onToggle = (nameBtn, BoardItemId, category) => {
+    dispatch(patchCategoryThunk([nameBtn, BoardItemId, category]));
   };
 
   const categoryList = ["todo", "working", "validate", "complete", "archive"];

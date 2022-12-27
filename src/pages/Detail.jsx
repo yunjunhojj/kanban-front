@@ -1,24 +1,21 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  deleteBoard,
-  getBoardThunk,
-  patchBoardThunk,
-} from "../redux/modules/boardSlice";
+import { getBoardThunk, deleteBoardThunk, getBoardThunk, patchBoardThunk, } from "../redux/modules/boardSlice";
+import { getCommentThunk } from "../redux/modules/commentSlice";
 import styled from "styled-components";
-import CommentCreate from "../components/CommentCreate";
-// import { editComment } from "../redux/modules/commentSlice";
-// , { StyledComponent } from "styled-components";
+import { CommentRead, CommentCreate } from "../components";
+
 const Detail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { boards } = useSelector((state) => state.boards);
+  const { comments } = useSelector((state) => state.comments);
 
   useEffect(() => {
     dispatch(getBoardThunk());
+    dispatch(getCommentThunk());
   }, [dispatch]);
-
-  const { boards } = useSelector((state) => state.boards);
 
   // 이전 컴포넌트에서 받아온 파라미터 조회
   const params = useParams().id;
@@ -33,7 +30,7 @@ const Detail = () => {
   };
   // 상세페이지 보드 삭제 버튼 이벤트 핸들러
   const deleteBoardHandler = (event) => {
-    dispatch(deleteBoard(event.target.value));
+    dispatch(deleteBoardThunk(event.target.value));
     navigate("/");
   };
 
@@ -70,11 +67,14 @@ const Detail = () => {
         <div className="board-container">
           {/* 제목 */}
           <p className="title">{board?.title}</p>
+
+<div className="board-card-info">
           {/* 담당자 */}
           <span className="director">{board?.name}</span>
           {/* 단계 */}
           <span className="category">{board?.category}</span>
           {/* 보드내용 */}
+          </div>
           <form onSubmit={editBoardHandler}>
             {editable ? (
               <>
@@ -99,94 +99,71 @@ const Detail = () => {
       </StyledDiv>
       {/* 댓글 부분 */}
       <CommentCreate />
+      <CommentRead />
     </>
   );
 };
 const StyledDiv = styled.div`
-  /* max-width: 1440px; */
-  /* min-height: 100vh; */
+
+  max-width: 90rem;
+  min-height: 74.85vh;
+
   width: 100%;
   height: 100%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: lightgrey;
+  background-color: #f2f2f2;
   .board-container {
-    padding: 0 15.75rem;
+    margin: 0 auto;
+    margin-bottom: 6.25rem;
+    padding: 0 0.625rem;
+    width: 100%;
   }
   .title {
-    margin-top: 3.5rem;
-    margin-bottom: 0rem;
-    width: fit-content;
-    height: 2.25rem;
-    font-style: normal;
-    font-weight: 700;
+    max-width: 936px;
+    width: 100%;
+    margin: 0 auto;
+    font-weight: bold;
     font-size: 1.5rem;
-    line-height: 2.25rem;
   }
-  .director {
-    margin-top: 1.75rem;
-    padding-left: 2rem;
-    width: fit-content;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 1rem;
-    line-height: 1.5rem;
+  .board-card-info {
+    max-width: 58.5rem;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 0.5rem;
+    .director,
+    .category {
+      width: 100%;
+      margin-left: 12px;
+      font-weight: 700;
+      font-size: 0.875rem;
+    }
+    .category {
+      margin-left: 1.25rem;
+    }
   }
-  .category {
-    margin-left: 2rem;
-    margin-top: 1.75rem;
-    margin-bottom: 0rem;
-    width: fit-content;
-    height: 1.5rem;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-
   .board-content {
-    margin-top: 3.5rem;
     max-width: 58.5rem;
     min-height: 8.75rem;
+    width: 100%;
+    padding: 1.25rem;
+    margin: auto;
+    // border: 0.1875rem solid #333;
     border-radius: 0.5rem;
-    padding: 0.75rem;
-    background-color: lightblue;
+    font-size: 1rem;
     word-break: break-all;
+    background-color: #ddd;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
   }
   .line {
     margin-top: 10.25rem;
     height: 0.25rem;
     width: 100%;
     background-color: grey;
+    margin: 0 0 3rem;
   }
-  /* .comment-container {
-    padding: 0 15.75rem; */
-  /* margin-top: 2.75rem; */
-  /* } */
-  /* .comment-header {
-    margin-top: 2.75rem;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 1.5rem;
-    line-height: 2.25rem;
-  }
-  .comment-name {
-    margin-top: 1.25rem;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-  .comment-content {
-    margin-top: 3.5rem;
-    max-width: 58.5rem;
-    min-height: 7.5rem;
-    border-radius: 0.5rem;
-    padding: 0.75rem;
-    background-color: lightcoral;
-    word-break: break-all;
-  } */
 `;
 
 export default Detail;

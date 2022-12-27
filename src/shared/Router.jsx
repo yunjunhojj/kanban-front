@@ -12,8 +12,8 @@ const Router = () => {
         <CustomHeader />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/:id" element={<Detail />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </Layout>
       <CustomFAB />

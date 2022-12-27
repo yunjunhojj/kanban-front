@@ -1,9 +1,13 @@
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { useBodyScrollLock } from "../Hooks/index";
+import { showCreateBoardModal } from "../redux/modules/boardSlice.js";
+import CreateBoardModal from "./CreateBoardModal";
 
 const CustomFABStyled = styled.button`
   border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
+  width: 4.5rem;
+  height: 4.5rem;
   border: none;
   background-color: #2563eb;
   display: flex;
@@ -23,15 +27,20 @@ const CustomFABStyled = styled.button`
   }
 `;
 
-const handleOpenModal = () => {
-  console.log("Modal open");
-};
-
 const CustomFAB = () => {
+  const dispatch = useDispatch();
+  const { lockScroll } = useBodyScrollLock();
+  const handleOpenModal = () => {
+    dispatch(showCreateBoardModal());
+    lockScroll();
+  };
   return (
-    <CustomFABStyled onClick={handleOpenModal}>
-      <img className="FAB-icon" src="./plus.svg" alt="board 추가 버튼" />
-    </CustomFABStyled>
+    <div>
+      <CreateBoardModal />
+      <CustomFABStyled onClick={() => handleOpenModal()}>
+        <img className="FAB-icon" src="./plus.svg" alt="board 추가 버튼" />
+      </CustomFABStyled>
+    </div>
   );
 };
 

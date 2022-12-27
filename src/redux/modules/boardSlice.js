@@ -7,6 +7,7 @@ const initialState = {
   boards: [],
   isLoading: false,
   error: null,
+  createBoardModalVisibility: false,
 };
 
 // thunk
@@ -46,11 +47,25 @@ const patchBoardThunk = createAsyncThunk(
   }
 );
 
-const boardSlice = createSlice({
-  name: "boards",
-  initialState,
-  reducers: {
-    toggle: (state, action) => {
+const postBoardThunk = createAsyncThunk(
+  "board/postBoard",
+  async (payload, thunkAPI) => {
+    try {
+      await axios.post(BASE_URL, payload);
+
+      const data = await axios.get(BASE_URL);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+const patchCategoryThunk = createAsyncThunk(
+  "Board/patchCategory",
+  async (payload, thunkAPI) => {
+    const [nameBtn, BoardItemId, category] = payload;
+    try {
       const categoryList = [
         "todo",
         "working",
@@ -59,45 +74,48 @@ const boardSlice = createSlice({
         "archive",
       ];
 
-      if (action.payload[0] === "nextCategory") {
-        const nextStep = categoryList[++action.payload[2]];
-        axios.patch(`http://localhost:3001/boards/${action.payload[1]}`, {
+      let nextCategory = category;
+      if (nameBtn === "nextCategory") {
+        const nextStep = categoryList[++nextCategory];
+        axios.patch(`${BASE_URL}/${BoardItemId}`, {
           category: nextStep,
         });
-
-        state.boards.forEach((todo) => {
-          if (todo.id === action.payload[1]) {
-            todo.category = categoryList[action.payload[2]];
-          }
-        });
       } else {
-        const prevStep = categoryList[--action.payload[2]];
-        axios.patch(`http://localhost:3001/boards/${action.payload[1]}`, {
+        const prevStep = categoryList[--nextCategory];
+        axios.patch(`${BASE_URL}/${BoardItemId}`, {
           category: prevStep,
         });
-
-        state.boards.forEach((todo) => {
-          if (todo.id === action.payload[1]) {
-            todo.category = categoryList[action.payload[2]];
-          }
-        });
       }
-      axios.patch(`http://localhost:3001/boards/${action.payload[0]}`, {
-        category: action.payload[1],
-      });
+      return thunkAPI.fulfillWithValue([BoardItemId, nextCategory]);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
-      state.boards.forEach((todo) => {
-        if (todo.id === action.payload) {
-          todo.category = action.payload[1];
-        }
-      });
+consBoardThunk = createAsyncThunk(
+  "Board/deleteBoard",
+  async (payload, thunkAPI) => {
+    console.log(payload);
+    try {
+      await axios.delete(`${BASE_URL}/${payload}`);
+      return thunkAPI.fulfillWithValue(payload);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+const boardSlice = createSlice({
+  name: "boards",
+  initialState,
+  reducers: {
+
+    showCreateBoardModal: (state) => {
+      state.createBoardModalVisibility = true;
     },
-    deleteBoard: (state, action) => {
-      axios.delete(`http://localhost:3001/boards/${action.payload}`);
-      console.log(action.payload);
-      state.boards = state.boards.filter(
-        (board) => board.id !== action.payload
-      );
+    hideCreateBoardModal: (state) => {
+      state.createBoardModalVisibility = false;
     },
   },
   extraReducers: (builder) => {
@@ -126,6 +144,7 @@ const boardSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     });
+
     // patch
     builder.addCase(patchBoardThunk.pending, (state) => {
       state.isLoading = true;
@@ -136,12 +155,56 @@ const boardSlice = createSlice({
     });
 
     builder.addCase(patchBoardThunk.rejected, (state, action) => {
+          state.isLoading = false;
+      state.error = action.payload;
+    });
+
+    // patchBoard
+    builder.addCase(patchCategoryThunk.pending, (state) => {
+      state.isLoading = true;
+    });
+    
+    builder.addCase(patchCategoryThunk.fulfilled, (state, action) => {
       state.isLoading = false;
+      const [BoardItemId, category] = action.payload;
+      const categoryList = [
+        "todo",
+        "working",
+        "validate",
+        "complete",
+        "archive",
+      ];
+
+      state.boards.forEach((todo) => {
+        if (todo.id === BoardItemId) {
+          todo.category = categoryList[category];
+        }
+      });
+    });
+    builder.addCase(patchCategoryThunk.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
+
+    // deleteBoard
+    builder.addCase(deleteBoardThunk.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(deleteBoardThunk.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.boards = state.boards.filter(
+        (board) => board.id !== action.payload
+      );
+    });
+    builder.addCase(deleteBoardThunk.rejected, (state, action) => {
+state.isLoading = false;
       state.error = action.payload;
     });
   },
 });
 
-export const { toggle, deleteBoard } = boardSlice.actions;
-export { getBoardThunk, postBoardThunk, patchBoardThunk };
+
+export const { showCreateBoardModal, hideCreateBoardModal, toggle } =
+  boardSlice.actions;
+export { getBoardThunk, postBoardThunk, patchCategoryThunk, deleteBoardThunk, patchBoardThunk };
 export default boardSlice.reducer;

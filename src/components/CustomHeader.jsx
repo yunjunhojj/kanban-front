@@ -16,18 +16,20 @@ const CustomHeaderStyled = styled.header`
     align-items: center;
     height: 100%;
     .Header-container-text {
+      margin: 0 15px;
       font-size: 1.25rem;
       line-height: 1.5rem;
       font-weight: 700;
       cursor: pointer;
-      &:hover {
-        color: #eb5a3d;
-      }
+    }
+    div.Header-container-text:hover {
+      color: #eb5a3d;
     }
   }
   .title {
     /* TODO: 서비스 컬러를 선택하면 반영합니다. */
     color: #2563eb;
+    font-size: 32px;
   }
 `;
 
@@ -41,7 +43,8 @@ const CustomHeader = () => {
         <a
           href="https://github.com/yunjunhojj/kanban-front/pulls"
           target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer"
+        >
           <div className="Header-container-text">Help</div>
         </a>
       </div>

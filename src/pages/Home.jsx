@@ -3,9 +3,13 @@
 import styled from "styled-components";
 // import { getBoardThunk } from "../redux/modules/boardSlice";
 import { BoardColumn } from "../components";
+import { nanoid } from "@reduxjs/toolkit";
+
+console.log(nanoid);
+
 const HomeStyled = styled.main`
   max-width: 90rem;
-  min-height: 100vh;
+  min-height: 74.88vh;
   width: 100%;
   height: 100%;
   margin: 0 auto;
