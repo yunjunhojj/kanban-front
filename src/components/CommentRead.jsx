@@ -23,10 +23,12 @@ const CommentReadStyled = styled.div`
       font-weight: 700;
       width: 44.5rem;
       line-break: anywhere;
+      text-align: justify;
     }
     .comment-text {
       width: 44.5rem;
       line-break: anywhere;
+      text-align: justify;
     }
     .custom-btn {
       margin: 0.3125rem 0;
@@ -89,9 +91,14 @@ function CommentRead() {
           </div>
         </div>
       ));
+
     return (
       <CommentReadStyled>
-        <div>{comments.length ? renderedComments : "댓글이 없습니다."}</div>
+        <div>
+          {renderedComments.length !== 0
+            ? renderedComments
+            : "댓글이 없습니다."}
+        </div>
       </CommentReadStyled>
     );
   }
