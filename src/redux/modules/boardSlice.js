@@ -26,6 +26,18 @@ const postBoardThunk = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       await axios.post(BASE_URL, payload);
+      const data = await axios.post(BASE_URL);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+const patchBoardThunk = createAsyncThunk(
+  "board/patchBoard",
+  async (payload, thunkAPI) => {
+    try {
+      await axios.patch(`${BASE_URL}/${payload.id}`, payload);
       const data = await axios.get(BASE_URL);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
@@ -33,6 +45,7 @@ const postBoardThunk = createAsyncThunk(
     }
   }
 );
+
 const boardSlice = createSlice({
   name: "boards",
   initialState,
@@ -113,9 +126,22 @@ const boardSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     });
+    // patch
+    builder.addCase(patchBoardThunk.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(patchBoardThunk.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.boards = action.payload;
+    });
+
+    builder.addCase(patchBoardThunk.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
   },
 });
 
 export const { toggle, deleteBoard } = boardSlice.actions;
-export { getBoardThunk, postBoardThunk };
+export { getBoardThunk, postBoardThunk, patchBoardThunk };
 export default boardSlice.reducer;

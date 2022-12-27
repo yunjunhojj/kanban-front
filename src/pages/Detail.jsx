@@ -1,35 +1,66 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { deleteBoard, getBoardThunk } from "../redux/modules/boardSlice";
+import {
+  deleteBoard,
+  getBoardThunk,
+  patchBoardThunk,
+} from "../redux/modules/boardSlice";
 import styled from "styled-components";
-import CommentRead from "../components/CommentRead";
 import CommentCreate from "../components/CommentCreate";
+// import { editComment } from "../redux/modules/commentSlice";
 // , { StyledComponent } from "styled-components";
 const Detail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { boards } = useSelector((state) => state.boards);
 
   useEffect(() => {
     dispatch(getBoardThunk());
   }, [dispatch]);
+
+  const { boards } = useSelector((state) => state.boards);
 
   // 이전 컴포넌트에서 받아온 파라미터 조회
   const params = useParams().id;
   // 회면에 뿌리기
   const filteredBoard = boards.filter((item) => item.id === params);
   const board = filteredBoard[0];
-
+  // 편집 상태 체크
+  const [editable, setEditable] = useState(false);
+  // 편집 상태 변경 함수
+  const editOn = () => {
+    setEditable(true);
+  };
   // 상세페이지 보드 삭제 버튼 이벤트 핸들러
   const deleteBoardHandler = (event) => {
     dispatch(deleteBoard(event.target.value));
     navigate("/");
   };
+
   // 상세페이지 보드 편집
-  // const editBoardHandler = (event)=>{
-  //   dispatch()
-  // }
+  const [content, setContent] = useState(""); // 보드 내용 편집
+
+  const boardContentChangeHandler = (event) => {
+    setContent(event.target.value);
+  };
+
+  // form 함수
+  const editBoardHandler = (event) => {
+    event.preventDefault();
+
+    const newBoard = {
+      id: params,
+      content: content,
+      name: board.name,
+      pw: board.pw,
+      title: board.title,
+    };
+
+    dispatch(patchBoardThunk(newBoard));
+    setEditable(!editable);
+    setContent("");
+  };
+
   const prevPageHandle = () => {
     navigate("/");
   };
@@ -39,23 +70,35 @@ const Detail = () => {
         <div className="board-container">
           {/* 제목 */}
           <p className="title">{board?.title}</p>
-          <button onClick={deleteBoardHandler} value={board?.id}>
-            삭제
-          </button>
-          {/* <button onClick={editBoardHandler}>편집</button> */}
           {/* 담당자 */}
           <span className="director">{board?.name}</span>
           {/* 단계 */}
           <span className="category">{board?.category}</span>
           {/* 보드내용 */}
-          <div className="board-content">{board?.content}</div>
+          <form onSubmit={editBoardHandler}>
+            {editable ? (
+              <>
+                <input
+                  className="board-content"
+                  value={content}
+                  onChange={boardContentChangeHandler}
+                ></input>
+                <button>저장</button>
+              </>
+            ) : (
+              <div className="board-content">{board?.content}</div>
+            )}
+          </form>
+          <button onClick={() => editOn()}>편집</button>
+          <button onClick={deleteBoardHandler} value={board?.id}>
+            삭제
+          </button>
         </div>
         <button onClick={prevPageHandle}>(임시)이전페이지로 이동</button>
         <hr className="line"></hr>
       </StyledDiv>
       {/* 댓글 부분 */}
       <CommentCreate />
-      <CommentRead />
     </>
   );
 };
