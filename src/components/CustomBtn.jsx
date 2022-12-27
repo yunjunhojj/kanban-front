@@ -13,6 +13,7 @@ const CustomBtnStyle = styled.button`
 const CustomBtn = ({ nameBtn, BoardItemId, CurrentCategory }) => {
   const dispatch = useDispatch();
 
+
   const onToggle = (nameBtn, BoardItemId, category) => {
     dispatch(patchCategoryThunk([nameBtn, BoardItemId, category]));
   };

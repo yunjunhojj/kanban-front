@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import CustomBtn from "./CustomBtn";
-import { deleteBoardThunk } from "../redux/modules/boardSlice";
+import { deleteBoard, deleteBoardThunk } from "../redux/modules/boardSlice";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const BoardItemBox = styled.div`
@@ -68,12 +69,15 @@ const BoardItemBox = styled.div`
 
 const BoardItem = ({ name, id, title, category, content }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onDelete = (id) => {
     if (window.confirm("삭제하시겠습니까?")) {
       dispatch(deleteBoardThunk(id));
     }
   };
+
+  console.log(category);
 
   return (
     <BoardItemBox>
@@ -83,27 +87,37 @@ const BoardItem = ({ name, id, title, category, content }) => {
           className="closeBtn"
           onClick={() => {
             onDelete(id);
-          }}>
+          }}
+        >
           x
         </button>
       </div>
-
-      <Link className="detailBtn" to={`/detail/${id}`}>
-        <h2> {title} </h2>
-        {/*보드 내용 삽입*/}
+      {/* navigate로 수정-희진 */}
+      <button
+        className="detailBtn"
+        onClick={() => {
+          navigate(`/detail/${id}`);
+        }}
+      >
+        [상세보기]
+      </button>
+      <h2> {title} </h2>
+      {/*보드 내용 삽입*/}
         <div className="content-box">
           <p>{content}</p>
         </div>
-        {/**/}
-      </Link>
+      
+
       <CustomBtn
         nameBtn="nextCategory"
         CurrentCategory={category}
-        BoardItemId={id}></CustomBtn>
+        BoardItemId={id}
+      ></CustomBtn>
       <CustomBtn
         nameBtn="prevCategory"
         CurrentCategory={category}
-        BoardItemId={id}></CustomBtn>
+        BoardItemId={id}
+      ></CustomBtn>
     </BoardItemBox>
   );
 };

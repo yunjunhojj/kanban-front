@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getBoardThunk } from "../redux/modules/boardSlice";
+import { getBoardThunk, deleteBoardThunk, getBoardThunk, patchBoardThunk, } from "../redux/modules/boardSlice";
 import { getCommentThunk } from "../redux/modules/commentSlice";
 import styled from "styled-components";
 import { CommentRead, CommentCreate } from "../components";
@@ -19,13 +19,45 @@ const Detail = () => {
 
   // 이전 컴포넌트에서 받아온 파라미터 조회
   const params = useParams().id;
-  console.log("Params is : ", params);
-
+  // 회면에 뿌리기
   const filteredBoard = boards.filter((item) => item.id === params);
   const board = filteredBoard[0];
-  console.log("Board is : ", board);
-  const filteredComment = comments.filter((item) => item.boardId === params);
-  const comment = filteredComment[0];
+  // 편집 상태 체크
+  const [editable, setEditable] = useState(false);
+  // 편집 상태 변경 함수
+  const editOn = () => {
+    setEditable(true);
+  };
+  // 상세페이지 보드 삭제 버튼 이벤트 핸들러
+  const deleteBoardHandler = (event) => {
+    dispatch(deleteBoardThunk(event.target.value));
+    navigate("/");
+  };
+
+  // 상세페이지 보드 편집
+  const [content, setContent] = useState(""); // 보드 내용 편집
+
+  const boardContentChangeHandler = (event) => {
+    setContent(event.target.value);
+  };
+
+  // form 함수
+  const editBoardHandler = (event) => {
+    event.preventDefault();
+
+    const newBoard = {
+      id: params,
+      content: content,
+      name: board.name,
+      pw: board.pw,
+      title: board.title,
+    };
+
+    dispatch(patchBoardThunk(newBoard));
+    setEditable(!editable);
+    setContent("");
+  };
+
   const prevPageHandle = () => {
     navigate("/");
   };
@@ -35,25 +67,47 @@ const Detail = () => {
         <div className="board-container">
           {/* 제목 */}
           <p className="title">{board?.title}</p>
-          <div className="board-card-info">
-            {/* 담당자 */}
-            <span className="director">{board?.name}</span>
-            {/* 단계 */}
-            <span className="category">{board?.category}</span>
-            {/* 보드내용 */}
+
+<div className="board-card-info">
+          {/* 담당자 */}
+          <span className="director">{board?.name}</span>
+          {/* 단계 */}
+          <span className="category">{board?.category}</span>
+          {/* 보드내용 */}
           </div>
-          <div className="board-content">{board?.content}</div>
+          <form onSubmit={editBoardHandler}>
+            {editable ? (
+              <>
+                <input
+                  className="board-content"
+                  value={content}
+                  onChange={boardContentChangeHandler}
+                ></input>
+                <button>저장</button>
+              </>
+            ) : (
+              <div className="board-content">{board?.content}</div>
+            )}
+          </form>
+          <button onClick={() => editOn()}>편집</button>
+          <button onClick={deleteBoardHandler} value={board?.id}>
+            삭제
+          </button>
         </div>
+        <button onClick={prevPageHandle}>(임시)이전페이지로 이동</button>
         <hr className="line"></hr>
-        <CommentCreate />
-        <CommentRead />
       </StyledDiv>
+      {/* 댓글 부분 */}
+      <CommentCreate />
+      <CommentRead />
     </>
   );
 };
 const StyledDiv = styled.div`
+
   max-width: 90rem;
   min-height: 74.85vh;
+
   width: 100%;
   height: 100%;
   margin: 0 auto;
@@ -104,6 +158,7 @@ const StyledDiv = styled.div`
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
   }
   .line {
+    margin-top: 10.25rem;
     height: 0.25rem;
     width: 100%;
     background-color: grey;

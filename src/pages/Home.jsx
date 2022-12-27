@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+// import { useEffect } from "react";
+// import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
-import { getBoardThunk } from "../redux/modules/boardSlice";
+// import { getBoardThunk } from "../redux/modules/boardSlice";
 import { BoardColumn } from "../components";
 import { nanoid } from "@reduxjs/toolkit";
 
@@ -24,9 +24,9 @@ const HomeStyled = styled.main`
   }
 `;
 
-const BoardCard = () => {
-  return <div></div>;
-};
+// const BoardCard = () => {
+//   return <div></div>;
+// };
 
 const Home = () => {
   return (
