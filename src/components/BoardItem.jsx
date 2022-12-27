@@ -35,7 +35,7 @@ const BoardItemBox = styled.div`
   }
 
   .closeBtn {
-    padding: 0 7px;
+    padding: 0 0.4375rem;
     border: 0rem;
     font-size: 1.85rem;
     transition-duration: 0.3s;
@@ -59,11 +59,10 @@ const BoardItemBox = styled.div`
     min-height: 100px;
     height: 100%;
 
-    padding-top: 10px;
-    padding-left: 10px;
+    padding: 0.625rem;
 
     border: 1px solid #aaa;
-    border-radius: 10px;
+    border-radius: 0.625rem;
   }
 `;
 
@@ -87,8 +86,7 @@ const BoardItem = ({ name, id, title, category, content }) => {
           className="closeBtn"
           onClick={() => {
             onDelete(id);
-          }}
-        >
+          }}>
           x
         </button>
       </div>
@@ -97,27 +95,23 @@ const BoardItem = ({ name, id, title, category, content }) => {
         className="detailBtn"
         onClick={() => {
           navigate(`/detail/${id}`);
-        }}
-      >
+        }}>
         [상세보기]
       </button>
       <h2> {title} </h2>
       {/*보드 내용 삽입*/}
-        <div className="content-box">
-          <p>{content}</p>
-        </div>
-      
+      <div className="content-box">
+        <p>{content}</p>
+      </div>
 
       <CustomBtn
         nameBtn="nextCategory"
         CurrentCategory={category}
-        BoardItemId={id}
-      ></CustomBtn>
+        BoardItemId={id}></CustomBtn>
       <CustomBtn
         nameBtn="prevCategory"
         CurrentCategory={category}
-        BoardItemId={id}
-      ></CustomBtn>
+        BoardItemId={id}></CustomBtn>
     </BoardItemBox>
   );
 };
