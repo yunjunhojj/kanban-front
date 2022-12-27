@@ -29,13 +29,3 @@ yarn-error.log*
 ./package-lock.json
 package-lock.json 21-26-38-059.json
 yarn.lock
-yarn.lock
-<<<<<<< HEAD
-<<<<<<< HEAD
-yarn.lock
-=======
-yarn.lock
->>>>>>> 1116bf55115514f4940b2cfbd9a0733cdfbaed12
-=======
-yarn.lock
->>>>>>> 1116bf55115514f4940b2cfbd9a0733cdfbaed12

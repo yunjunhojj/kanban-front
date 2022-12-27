@@ -82,7 +82,8 @@ const BoardItem = ({ name, id, title, category, content }) => {
           className="closeBtn"
           onClick={() => {
             onDelete(id);
-          }}>
+          }}
+        >
           x
         </button>
       </div>
@@ -96,13 +97,15 @@ const BoardItem = ({ name, id, title, category, content }) => {
         {/**/}
       </Link>
       <CustomBtn
-        name="nextCategory"
+        nameBtn="nextCategory"
         CurrentCategory={category}
-        BoardItemId={id}></CustomBtn>
+        BoardItemId={id}
+      ></CustomBtn>
       <CustomBtn
-        name="prevCategory"
+        nameBtn="prevCategory"
         CurrentCategory={category}
-        BoardItemId={id}></CustomBtn>
+        BoardItemId={id}
+      ></CustomBtn>
     </BoardItemBox>
   );
 };

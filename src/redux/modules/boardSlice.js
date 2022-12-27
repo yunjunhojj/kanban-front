@@ -42,19 +42,47 @@ const boardSlice = createSlice({
   initialState,
   reducers: {
     toggle: (state, action) => {
-      axios.patch(`http://localhost:3001/boards/${action.payload[0]}`, {
-        category: action.payload[1],
-      });
+      const categoryList = [
+        "todo",
+        "working",
+        "validate",
+        "complete",
+        "archive",
+      ];
 
-      state.boards.forEach((todo) => {
-        if (todo.id == action.payload) {
-          todo.category = action.payload[1];
-        }
-      });
+      //action= [ 버튼 종류 , board.id, current category] 를 입력 받습니다.
+      const nameBtn = action.payload[0];
+      const boardId = action.payload[1];
+      let currentCategory = action.payload[2];
+
+      if (nameBtn === "nextCategory") {
+        const nextStep = categoryList[++currentCategory];
+        axios.patch(`${BASE_URL}/${boardId}`, {
+          category: nextStep,
+        });
+        state.boards.forEach((todo) => {
+          if (todo.id === boardId) {
+            todo.category = categoryList[currentCategory];
+          }
+        });
+      } else {
+        const prevStep = categoryList[--currentCategory];
+        axios.patch(`${BASE_URL}/${boardId}`, {
+          category: prevStep,
+        });
+        state.boards.forEach((todo) => {
+          if (todo.id === boardId) {
+            todo.category = categoryList[currentCategory];
+          }
+        });
+      }
     },
     deleteBoard: (state, action) => {
-      axios.delete(`http://localhost:3001/boards/${action.payload}`);
-      state.todos = state.boards.filter((board) => board.id !== action.payload);
+      console.log("delete 확인", action.payload);
+      axios.delete(`${BASE_URL}/${action.payload}`);
+      state.boards = state.boards.filter(
+        (board) => board.id !== action.payload
+      );
     },
     showCreateBoardModal: (state) => {
       state.createBoardModalVisibility = true;
