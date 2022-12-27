@@ -23,6 +23,7 @@ const BoardColumnStyled = styled.div`
 
   :hover {
     box-shadow: 0.3125rem 0.3125rem 0.75rem rgba(0, 0, 0, 0.7);
+    transform: scale(1.05);
   }
   :hover .title {
     color: #2563eb;
@@ -68,7 +69,7 @@ const BoardColumn = (props) => {
 
   return (
     <BoardColumnStyled>
-      {/*Column title입니다.*/}
+      {/*아래 <h3> = Column title입니다.*/}
       <h3 className="title">{props.title}</h3>
       <ul>{renderedBoardItems}</ul>
     </BoardColumnStyled>
