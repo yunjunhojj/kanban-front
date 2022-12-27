@@ -6,7 +6,6 @@ import { getCommentThunk } from "../redux/modules/commentSlice";
 import styled from "styled-components";
 import { CommentRead, CommentCreate } from "../components";
 
-// , { StyledComponent } from "styled-components";
 const Detail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -105,6 +104,7 @@ const StyledDiv = styled.div`
     height: 0.25rem;
     width: 100%;
     background-color: grey;
+    margin: 0 0 3rem;
   }
   .comment-container {
     padding: 0 15.75rem;

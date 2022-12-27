@@ -9,8 +9,38 @@ import {
 } from "../redux/modules/commentSlice";
 
 const CommentReadStyled = styled.div`
-  border: 0.125rem solid black;
-  padding: 3rem;
+  background-color: #e5e7eb;
+  border-radius: 0 0 0.75rem 0.75rem;
+  padding: 1.5rem 3rem;
+  width: 58.5rem;
+  margin: 0 auto 3rem;
+  .comment-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    .comment-name {
+      font-weight: 700;
+      width: 44.5rem;
+      line-break: anywhere;
+    }
+    .comment-text {
+      width: 44.5rem;
+      line-break: anywhere;
+    }
+    .custom-btn {
+      margin: 0.3125rem 0;
+      font-size: 1rem;
+      background-color: #fff;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.5rem;
+      margin: 0 0 0 0.75rem;
+      cursor: pointer;
+      :hover {
+        color: #2563eb;
+      }
+    }
+  }
 `;
 
 function CommentRead() {
@@ -35,11 +65,28 @@ function CommentRead() {
     const renderedComments = comments
       .filter((comment) => comment.boardId === id)
       .map((comment) => (
-        <div key={comment.id}>
-          <div>작성자: {comment.name}</div>
-          <div>댓글내용: {comment.comment}</div>
-          <button onClick={() => handleEditComment(comment.id)}>편집</button>
-          <button onClick={() => handleDeleteComment(comment.id)}>삭제</button>
+        <div className="comment-item" key={comment.id}>
+          <div className="comment-item-container">
+            <div className="comment-name"> {`작성자: ${comment.name}`}</div>
+            <div className="comment-text">
+              {" "}
+              {`댓글내용: ${comment.comment}`}
+            </div>
+          </div>
+          <div className="btn-container">
+            <button
+              className="custom-btn"
+              onClick={() => handleEditComment(comment.id)}
+            >
+              편집
+            </button>
+            <button
+              className="custom-btn"
+              onClick={() => handleDeleteComment(comment.id)}
+            >
+              삭제
+            </button>
+          </div>
         </div>
       ));
     return (
