@@ -21,8 +21,11 @@ const BoardColumnStyled = styled.div`
 
   transition-duration: 0.3s;
 
-  &:hover {
+  :hover {
     box-shadow: 0.3125rem 0.3125rem 0.75rem rgba(0, 0, 0, 0.7);
+  }
+  :hover .title {
+    color: #2563eb;
   }
 
   /* background-color: beige; */
@@ -38,6 +41,8 @@ const BoardColumnStyled = styled.div`
     font-weight: bold;
 
     text-align: center;
+
+    transition-duration: 0.3s;
   }
 `;
 

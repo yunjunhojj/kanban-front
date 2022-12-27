@@ -31,11 +31,13 @@ const Detail = () => {
         <div className="board-container">
           {/* 제목 */}
           <p className="title">{board?.title}</p>
-          {/* 담당자 */}
-          <span className="director">{board?.name}</span>
-          {/* 단계 */}
-          <span className="category">{board?.category}</span>
-          {/* 보드내용 */}
+          <div className="board-card-info">
+            {/* 담당자 */}
+            <span className="director">{board?.name}</span>
+            {/* 단계 */}
+            <span className="category">{board?.category}</span>
+            {/* 보드내용 */}
+          </div>
           <div className="board-content">{board?.content}</div>
         </div>
         <hr className="line"></hr>
@@ -58,59 +60,58 @@ const Detail = () => {
   );
 };
 const StyledDiv = styled.div`
-  max-width: 1440px;
-  min-height: 100vh;
+  max-width: 90rem;
+  min-height: 81.1vh;
   width: 100%;
   height: 100%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: lightgrey;
+  background-color: #f2f2f2;
+  // background-color: blue;
   .board-container {
-    padding: 0 15.75rem;
+    margin: 0 auto;
+    margin-bottom: 6.25rem;
+    padding: 0 0.625rem;
+    width: 100%;
   }
   .title {
-    margin-top: 3.5rem;
-    margin-bottom: 0rem;
-    width: fit-content;
-    height: 2.25rem;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 1.5rem;
-    line-height: 2.25rem;
+    max-width: 936px;
+    width: 100%;
+    margin: 0 auto;
+    font-weight: bold;
+    font-size: 26px;
   }
-  .director {
-    margin-top: 1.75rem;
-    padding-left: 2rem;
-    width: fit-content;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 1rem;
-    line-height: 1.5rem;
+  .board-card-info {
+    max-width: 58.5rem;
+    width: 100%;
+    margin: auto;
+    padding: 0.3125rem 0;
+    .director,
+    .category {
+      width: 100%;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .category {
+      margin-left: 2rem;
+    }
   }
-  .category {
-    margin-left: 2rem;
-    margin-top: 1.75rem;
-    margin-bottom: 0rem;
-    width: fit-content;
-    height: 1.5rem;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-
   .board-content {
-    margin-top: 3.5rem;
     max-width: 58.5rem;
     min-height: 8.75rem;
+    width: 100%;
+    padding: 1.25rem;
+    margin: auto;
+    // border: 0.1875rem solid #333;
     border-radius: 0.5rem;
-    padding: 0.75rem;
-    background-color: lightblue;
+    font-size: 20px;
     word-break: break-all;
+    background-color: #ddd;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
   }
   .line {
-    margin-top: 10.25rem;
     height: 0.25rem;
     width: 100%;
     background-color: grey;

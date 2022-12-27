@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 const CustomFABStyled = styled.button`
   border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
+  width: 4.5rem;
+  height: 4.5rem;
   border: none;
   background-color: #2563eb;
   display: flex;
