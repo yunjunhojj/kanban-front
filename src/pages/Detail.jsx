@@ -31,6 +31,7 @@ const Detail = () => {
   // 편집 상태 변경 함수
   const editOn = () => {
     setEditable(!editable);
+    setContent("");
   };
   // 상세페이지 보드 삭제 버튼 이벤트 핸들러
   const deleteBoardHandler = (event) => {
