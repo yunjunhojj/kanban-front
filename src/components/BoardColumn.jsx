@@ -12,7 +12,6 @@ const BoardColumnStyled = styled.div`
 
   margin: 0 0.625rem;
   padding: 0.625rem;
-  padding-bottom: 1.875rem;
 
   border: 1px solid #ccc;
   border-radius: 0.625rem;
@@ -48,8 +47,6 @@ const BoardColumnStyled = styled.div`
 `;
 
 const BoardColumn = (props) => {
-  console.log("props : ", props);
-
   const dispatch = useDispatch();
 
   const { isLoading, error, boards } = useSelector((state) => state.boards);
@@ -61,8 +58,6 @@ const BoardColumn = (props) => {
 
   if (!isLoading) {
     renderedBoardItems = boards.map((item) => {
-      console.log("item.category : ", item.category);
-
       if (item.category === props.category) {
         return <BoardItem {...item} key={nanoid()}></BoardItem>;
       }

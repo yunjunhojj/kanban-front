@@ -4,7 +4,7 @@
       "id": "eiZ6TT37NzNKEsXOl0-mj",
       "name": "박휘인",
       "title": "12월 27일",
-      "category": "validate",
+      "category": "todo",
       "content": "잘 됩니다.",
       "password": "1234"
     },
@@ -20,8 +20,8 @@
       "id": "eML1Ky8lglX83gnxlQzlr",
       "name": "박휘인",
       "title": "부산 날씨",
-      "category": "todo",
-      "content": "추움\n",
+      "category": "working",
+      "content": "오전 3시",
       "password": "111"
     },
     {
@@ -39,14 +39,6 @@
       "id": "xunFBfh"
     },
     {
-      "id": "yuc676U76O8iXFKlAtLn9",
-      "name": "ㅁㄴㅇㅁㄴㅇ",
-      "title": "ㅁㄴㅇㅁㄴㅇ",
-      "category": "complete",
-      "content": "아직도 잘 된다. ver2",
-      "password": "ㅁㄴㅇasd"
-    },
-    {
       "id": "45jsqD-"
     },
     {
@@ -62,29 +54,43 @@
       "id": "RZEsiIS"
     },
     {
-      "id": "DJizg_Lydoa7WdQ4yZ00P",
-      "name": "ㅁㄴㅇ",
-      "title": "ㅇㅁㄴㅇ",
-      "category": "working",
-      "content": "배고프당",
-      "password": "das"
-    },
-    {
       "id": "eGqrJAU_fZlbr_GrFtv59",
       "name": "박휘인",
       "title": "Xiang",
-      "category": "validate",
+      "category": "complete",
       "content": "Wu Xiang XXXXiang",
       "password": "2222"
+    },
+    {
+      "id": "sjxRauxOIJ9SUrfA1Fs8E",
+      "name": "스칼렛",
+      "title": "잠시만",
+      "category": "validate",
+      "content": "용용\n",
+      "password": "1234"
     }
   ],
   "comments": [
     {
-      "id": "pd7Q7ZmRKjKn511GYlIOF",
+      "id": "KuxJn9XzXDS09AbfaO5HR",
       "boardId": "eiZ6TT37NzNKEsXOl0-mj",
-      "name": "asdasdasdasd",
-      "comment": "dasdasasdasdasddddd",
-      "password": "asdasdasd"
+      "name": "휘인",
+      "comment": "마라탕 맛집",
+      "password": "1234"
+    },
+    {
+      "id": "huHp1XhxRd2XjOzZA2G8X",
+      "boardId": "sjxRauxOIJ9SUrfA1Fs8E",
+      "name": "아이언맨",
+      "comment": "원자핵쓰",
+      "password": "1234"
+    },
+    {
+      "id": "UqrFJgJk4Z69a6ut6g6nj",
+      "boardId": "eML1Ky8lglX83gnxlQzlr",
+      "name": "휘인",
+      "comment": "input에 공백 상태에서 댓글 작성 클릭 시, 작동은 하지 않으나 alret가 뜨지 않습니다.hotfix 해야 할 것 같습니다.",
+      "password": "1234"
     }
   ]
 }

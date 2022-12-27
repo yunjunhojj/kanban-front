@@ -9,16 +9,25 @@ import {
 } from "../redux/modules/commentSlice";
 
 const CommentReadStyled = styled.div`
-  background-color: #e5e7eb;
+  box-shadow: 3px 3px 5px rgb(0 0 0 / 50%);
+  background-color: #ddd;
+  border-top: 0.25rem solid #f2f2f2;
   border-radius: 0 0 0.75rem 0.75rem;
   padding: 1.5rem 3rem;
   width: 58.5rem;
   margin: 0 auto 3rem;
+  .comment-item-container {
+    padding: 0.625rem;
+    border: 1px solid #aaa;
+    box-shadow: 0.125rem 0.125rem 0.125rem rgb(0 0 0 / 50%);
+    border-radius: 0.625rem;
+  }
   .comment-item {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 0.75rem;
     .comment-name {
       font-weight: 700;
       width: 44.5rem;
@@ -32,15 +41,22 @@ const CommentReadStyled = styled.div`
     }
     .custom-btn {
       margin: 0.3125rem 0;
-      font-size: 1rem;
-      background-color: #fff;
       padding: 0.5rem 0.75rem;
       border-radius: 0.5rem;
       margin: 0 0 0 0.75rem;
       cursor: pointer;
+      transition-duration: 0.3s;
+      color: #f2f2f2;
+      background-color: #333;
+      font-size: 0.875rem;
       :hover {
         color: #2563eb;
+        background: #f2f2f2;
+        box-shadow: 0.1875rem 0.1875rem 0.1875rem rgba(0, 0, 0, 0.5);
       }
+    }
+    .btn-container {
+      display: flex;
     }
   }
 `;
@@ -69,23 +85,18 @@ function CommentRead() {
       .map((comment) => (
         <div className="comment-item" key={comment.id}>
           <div className="comment-item-container">
-            <div className="comment-name"> {`작성자: ${comment.name}`}</div>
-            <div className="comment-text">
-              {" "}
-              {`댓글내용: ${comment.comment}`}
-            </div>
+            <div className="comment-name"> {` ${comment.name}`}</div>
+            <div className="comment-text"> {` ${comment.comment}`}</div>
           </div>
           <div className="btn-container">
             <button
               className="custom-btn"
-              onClick={() => handleEditComment(comment.id)}
-            >
+              onClick={() => handleEditComment(comment.id)}>
               편집
             </button>
             <button
               className="custom-btn"
-              onClick={() => handleDeleteComment(comment.id)}
-            >
+              onClick={() => handleDeleteComment(comment.id)}>
               삭제
             </button>
           </div>

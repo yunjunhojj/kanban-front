@@ -52,7 +52,6 @@ const patchBoardThunk = createAsyncThunk(
 const deleteBoardThunk = createAsyncThunk(
   "Board/deleteBoard",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       await axios.delete(`${BASE_URL}/${payload}`);
       return thunkAPI.fulfillWithValue(payload);

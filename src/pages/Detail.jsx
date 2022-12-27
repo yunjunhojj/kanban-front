@@ -96,18 +96,18 @@ const Detail = () => {
             <span className="category">{categoryLabel()}</span>
             {/* 보드내용 */}
           </div>
-          {editable ? (      
+          {editable ? (
             <>
-            <form onSubmit={editBoardHandler}>
-              <input
-                className="board-content"
-                value={content}
-                onChange={boardContentChangeHandler}></input>
+              <form onSubmit={editBoardHandler}>
+                <input
+                  className="board-content"
+                  value={content}
+                  onChange={boardContentChangeHandler}></input>
+              </form>
               <div className="save-btn-wrap">
                 <StyledBtn type="submit">저장</StyledBtn>
+                <StyledBtn onClick={() => editOn()}>취소</StyledBtn>
               </div>
-            </form>
-            <button onClick={() => editOn()}>취소</button>
             </>
           ) : (
             <>
@@ -138,7 +138,6 @@ const Detail = () => {
 
 const StyledDiv = styled.div`
   max-width: 90rem;
-  min-height: 74.85vh;
 
   width: 100%;
   height: 100%;
@@ -226,7 +225,6 @@ const StyledDiv = styled.div`
       }
     }
   }
-
   .save-btn-wrap {
     max-width: 58.5rem;
     width: 100%;

@@ -13,11 +13,11 @@ const CustomFABStyled = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0.25rem 2.25rem rgba(0, 0, 0, 0.08);
   position: fixed;
   right: 6rem;
   bottom: 6rem;
-  transition-duration: 0.5s;
+  transition: 0.5s ease-in-out;
+  transition-delay: box-shadow 1s;
   &:hover {
     transform: rotate(360deg) scale(1.15);
   }

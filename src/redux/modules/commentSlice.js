@@ -32,7 +32,6 @@ const postCommentThunk = createAsyncThunk(
 const patchCommentThunk = createAsyncThunk(
   "comment/patchComment",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       await axios.patch(`${BASE_URL}/${payload.id}`, payload);
 
