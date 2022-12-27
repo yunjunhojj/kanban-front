@@ -2,7 +2,7 @@
   "boards": [
     {
       "id": "z6ost9Sp0Lx7G9A0WGhvS",
-      "name": "담당자 이름",
+      "name": "임홍구",
       "category": "todo",
       "title": "(Test)We plan 완성 ",
       "content": "(Test)We plan 완성 12.27(화)까지",
@@ -26,7 +26,7 @@
     },
     {
       "id": "vzSp-jzTXppJSSP3eLZ3k",
-      "name": "담당자 이름",
+      "name": "윤준호",
       "category": "working",
       "title": "진행 중 제목",
       "content": "보드 내용",
@@ -34,7 +34,7 @@
     },
     {
       "id": "L1--H0Ob0NOMlfXUHt9r5",
-      "name": "담당자 이름",
+      "name": "김상현",
       "category": "validate",
       "title": "QA 제목",
       "content": "보드 내용",
@@ -42,7 +42,7 @@
     },
     {
       "id": "pIIk2N5JxmP3iZwuZJDQD",
-      "name": "담당자 이름",
+      "name": "홍희진",
       "category": "complete",
       "title": "완료 제목",
       "content": "보드 내용",
