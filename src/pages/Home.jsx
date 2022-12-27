@@ -5,8 +5,6 @@ import styled from "styled-components";
 import { BoardColumn } from "../components";
 import { nanoid } from "@reduxjs/toolkit";
 
-console.log(nanoid);
-
 const HomeStyled = styled.main`
   max-width: 90rem;
   min-height: 74.88vh;
