@@ -9,7 +9,7 @@ console.log(nanoid);
 
 const HomeStyled = styled.main`
   max-width: 90rem;
-  min-height: 81.1vh;
+  min-height: 74.88vh;
   width: 100%;
   height: 100%;
   margin: 0 auto;

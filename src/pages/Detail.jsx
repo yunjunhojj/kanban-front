@@ -19,8 +19,11 @@ const Detail = () => {
 
   // 이전 컴포넌트에서 받아온 파라미터 조회
   const params = useParams().id;
+  console.log("Params is : ", params);
+
   const filteredBoard = boards.filter((item) => item.id === params);
   const board = filteredBoard[0];
+  console.log("Board is : ", board);
   const filteredComment = comments.filter((item) => item.boardId === params);
   const comment = filteredComment[0];
   const prevPageHandle = () => {
@@ -58,7 +61,6 @@ const StyledDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   background-color: #f2f2f2;
-  // background-color: blue;
   .board-container {
     margin: 0 auto;
     margin-bottom: 6.25rem;
@@ -70,21 +72,22 @@ const StyledDiv = styled.div`
     width: 100%;
     margin: 0 auto;
     font-weight: bold;
-    font-size: 26px;
+    font-size: 1.5rem;
   }
   .board-card-info {
     max-width: 58.5rem;
     width: 100%;
-    margin: auto;
-    padding: 0.3125rem 0;
+    margin: 0 auto;
+    margin-bottom: 0.5rem;
     .director,
     .category {
       width: 100%;
+      margin-left: 12px;
       font-weight: 700;
-      font-size: 18px;
+      font-size: 0.875rem;
     }
     .category {
-      margin-left: 2rem;
+      margin-left: 1.25rem;
     }
   }
   .board-content {
@@ -95,7 +98,7 @@ const StyledDiv = styled.div`
     margin: auto;
     // border: 0.1875rem solid #333;
     border-radius: 0.5rem;
-    font-size: 20px;
+    font-size: 1rem;
     word-break: break-all;
     background-color: #ddd;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
@@ -105,33 +108,6 @@ const StyledDiv = styled.div`
     width: 100%;
     background-color: grey;
     margin: 0 0 3rem;
-  }
-  .comment-container {
-    padding: 0 15.75rem;
-    /* margin-top: 2.75rem; */
-  }
-  .comment-header {
-    margin-top: 2.75rem;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 1.5rem;
-    line-height: 2.25rem;
-  }
-  .comment-name {
-    margin-top: 1.25rem;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-  .comment-content {
-    margin-top: 3.5rem;
-    max-width: 58.5rem;
-    min-height: 7.5rem;
-    border-radius: 0.5rem;
-    padding: 0.75rem;
-    background-color: lightcoral;
-    word-break: break-all;
   }
 `;
 
