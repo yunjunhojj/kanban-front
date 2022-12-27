@@ -11,7 +11,6 @@ import {
 
 const CommentCreateStyled = styled.div`
   margin: 3rem 0;
-  /* border: 0.125rem solid black; */
   background-color: #e5e7eb;
   border-radius: 0.75rem 0.75rem 0 0;
   padding: 3rem 3rem 1rem;
@@ -20,13 +19,16 @@ const CommentCreateStyled = styled.div`
   .custom-btn {
     margin: 0.3125rem 0;
     font-size: 1rem;
-    /* line-height: 1.25rem; */
-    background-color: #fff;
+    background-color: ${(props) =>
+      props.postEnabled && props.patchEnabled ? "#fff" : "#D1D5DB"};
+    color: ${(props) =>
+      props.postEnabled && props.patchEnabled ? "#111827" : "#6B7280"};
     padding: 0.5rem 0.75rem;
     border-radius: 0.5rem;
     cursor: pointer;
     :hover {
-      color: #2563eb;
+      color: ${(props) =>
+        props.postEnabled && props.patchEnabled ? "#2563eb" : "#6B7280"};
     }
   }
   .custom-input {
@@ -65,6 +67,8 @@ function CommentCreate() {
     setPassword(event.target.value);
   };
 
+  const postEnabled = [writer, comment, password].every(Boolean);
+  const patchEnabled = [writer, comment].every(Boolean);
   const handlePostComment = (event) => {
     event.preventDefault();
 
@@ -118,7 +122,7 @@ function CommentCreate() {
   };
 
   return (
-    <CommentCreateStyled>
+    <CommentCreateStyled postEnabled={postEnabled} patchEnabled={patchEnabled}>
       <div>
         <h3>댓글 쓰기창</h3>
         <input
@@ -146,11 +150,19 @@ function CommentCreate() {
         )}
 
         {editText ? (
-          <button className="custom-btn" onClick={(e) => handleSaveComment(e)}>
+          <button
+            className="custom-btn"
+            disabled={!patchEnabled}
+            onClick={(e) => handleSaveComment(e)}
+          >
             댓글저장
           </button>
         ) : (
-          <button className="custom-btn" onClick={(e) => handlePostComment(e)}>
+          <button
+            className="custom-btn"
+            disabled={!postEnabled}
+            onClick={(e) => handlePostComment(e)}
+          >
             댓글작성
           </button>
         )}
