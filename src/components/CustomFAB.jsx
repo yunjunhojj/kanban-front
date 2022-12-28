@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useBodyScrollLock } from "../Hooks/index";
 import { showCreateBoardModal } from "../redux/modules/boardSlice.js";
 import CreateBoardModal from "./CreateBoardModal";
+// import plus from "../../public/plus.svg";
+import plus from "../plus.svg";
 
 const CustomFABStyled = styled.button`
   border-radius: 50%;
@@ -13,11 +15,11 @@ const CustomFABStyled = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0.25rem 2.25rem rgba(0, 0, 0, 0.08);
   position: fixed;
   right: 6rem;
   bottom: 6rem;
-  transition-duration: 0.5s;
+  transition: 0.5s ease-in-out;
+  transition-delay: box-shadow 1s;
   &:hover {
     transform: rotate(360deg) scale(1.15);
   }
@@ -38,7 +40,7 @@ const CustomFAB = () => {
     <div>
       <CreateBoardModal />
       <CustomFABStyled onClick={() => handleOpenModal()}>
-        <img className="FAB-icon" src="./plus.svg" alt="board 추가 버튼" />
+        <img className="FAB-icon" src={plus} alt="board 추가 버튼" />
       </CustomFABStyled>
     </div>
   );

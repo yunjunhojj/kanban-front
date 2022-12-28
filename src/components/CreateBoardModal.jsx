@@ -65,6 +65,13 @@ const CreateBoardModalStyled = styled.div`
       border: none;
       box-sizing: border-box;
       cursor: pointer;
+
+      background-color: ${(props) => (props.postEnabled ? "#333" : "#D1D5DB")};
+      color: ${(props) => (props.postEnabled ? "#f2f2f2" : "#6B7280")};
+    }
+    .modal-btn-item.cancel-btn {
+      background-color: #333;
+      color: #f2f2f2;
     }
   }
   .text-area {
@@ -94,6 +101,8 @@ const CreateBoardModal = () => {
     resetContent();
   };
 
+  const postEnabled = [name, password, title, content].every(Boolean);
+
   const handleSubmitBoard = (e) => {
     e.preventDefault();
     const newBoard = {
@@ -116,7 +125,9 @@ const CreateBoardModal = () => {
     openScroll();
   };
   return (
-    <CreateBoardModalStyled visibility={modalVisibility ? "show" : null}>
+    <CreateBoardModalStyled
+      postEnabled={postEnabled}
+      visibility={modalVisibility ? "show" : null}>
       <div className="modal">
         <div className="user-info">
           <input
@@ -153,16 +164,17 @@ const CreateBoardModal = () => {
           id="content"
           placeholder="(내용)"
           value={content}
-          onChange={(e) => handleOnChangeContent(e)}
-        ></textarea>
+          onChange={(e) => handleOnChangeContent(e)}></textarea>
         <div className="modal-btn-container">
-          <button className="modal-btn-item" onClick={() => cancelPostBoard()}>
+          <button
+            className="modal-btn-item cancel-btn"
+            onClick={() => cancelPostBoard()}>
             취소
           </button>
           <button
             className="modal-btn-item"
-            onClick={(e) => handleSubmitBoard(e)}
-          >
+            disabled={!postEnabled}
+            onClick={(e) => handleSubmitBoard(e)}>
             저장
           </button>
         </div>

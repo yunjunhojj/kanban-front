@@ -4,6 +4,7 @@ import styled from "styled-components";
 // import { getBoardThunk } from "../redux/modules/boardSlice";
 import { BoardColumn } from "../components";
 
+
 const HomeStyled = styled.main`
   max-width: 90rem;
   min-height: 74.88vh;

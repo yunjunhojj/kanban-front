@@ -12,7 +12,6 @@ const BoardColumnStyled = styled.div`
 
   margin: 0 0.625rem;
   padding: 0.625rem;
-  padding-bottom: 1.875rem;
 
   border: 1px solid #ccc;
   border-radius: 0.625rem;

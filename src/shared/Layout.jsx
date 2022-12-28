@@ -197,7 +197,9 @@ summary {
 
 //todo , 커스텀 푸터 헤더 작성해주세요
 const MainStyled = styled.div`
-  font-size: 20px;
+  /* font-size : 20px 왜 있는건지 물어보기 */
+  /* font-size: 20px; */
+  min-height: 86.3vh;
 `;
 
 const Layout = ({ children }) => {

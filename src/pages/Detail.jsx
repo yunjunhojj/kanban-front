@@ -14,7 +14,7 @@ const Detail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { boards } = useSelector((state) => state.boards);
-  const { comments } = useSelector((state) => state.comments);
+  // const { comments } = useSelector((state) => state.comments);
 
   useEffect(() => {
     dispatch(getBoardThunk());
@@ -30,7 +30,8 @@ const Detail = () => {
   const [editable, setEditable] = useState(false);
   // 편집 상태 변경 함수
   const editOn = () => {
-    setEditable(true);
+    setEditable(!editable);
+    setContent("");
   };
   // 상세페이지 보드 삭제 버튼 이벤트 핸들러
   const deleteBoardHandler = (event) => {
@@ -57,6 +58,14 @@ const Detail = () => {
       title: board.title,
     };
 
+    // 유효성 {
+    if (!content) {
+      setContent("");
+      console.log("content IS : ", content);
+      alert("수정할 내용을 입력해주세요.");
+      return;
+    }
+
     dispatch(patchBoardThunk(newBoard));
     setEditable(!editable);
     setContent("");
@@ -67,19 +76,20 @@ const Detail = () => {
   };
 
   const categoryLabel = () => {
-    if (board?.category == "todo") {
+    if (board?.category === "todo") {
       return `해야할 일`;
     }
-    if (board?.category == "working") {
+    if (board?.category === "working") {
       return `진행중`;
     }
-    if (board?.category == "validate") {
+    if (board?.category === "validate") {
       return `검토중`;
     }
-    if (board?.category == "complete") {
+    if (board?.category === "complete") {
       return `완료`;
     }
   };
+
   return (
     <>
       <StyledDiv>
@@ -94,25 +104,37 @@ const Detail = () => {
             <span className="category">{categoryLabel()}</span>
             {/* 보드내용 */}
           </div>
-          <form onSubmit={editBoardHandler}>
-            {editable ? (
-              <>
+          {editable ? (
+            <>
+              <form onSubmit={editBoardHandler}>
                 <input
                   className="board-content"
                   value={content}
                   onChange={boardContentChangeHandler}></input>
-                <button>저장</button>
-              </>
-            ) : (
+                <div className="save-btn-wrap">
+                  <StyledBtn type="submit">저장</StyledBtn>
+                  <StyledBtn onClick={() => editOn()}>취소</StyledBtn>
+                </div>
+              </form>
+            </>
+          ) : (
+            <>
               <div className="board-content">{board?.content}</div>
-            )}
-          </form>
-          <button onClick={() => editOn()}>편집</button>
-          <button onClick={deleteBoardHandler} value={board?.id}>
-            삭제
-          </button>
+              <div className="btn-wrap">
+                <StyledBtn onClick={() => editOn()}>편집</StyledBtn>
+                <StyledBtn onClick={deleteBoardHandler} value={board?.id}>
+                  삭제
+                </StyledBtn>
+              </div>
+            </>
+          )}
+          <div className="perv-btn-wrap">
+            <button onClick={prevPageHandle} className="perv-btn">
+              이전페이지로 이동
+            </button>
+          </div>
         </div>
-        <button onClick={prevPageHandle}>(임시)이전페이지로 이동</button>
+
         <hr className="line"></hr>
       </StyledDiv>
       {/* 댓글 부분 */}
@@ -121,9 +143,9 @@ const Detail = () => {
     </>
   );
 };
+
 const StyledDiv = styled.div`
   max-width: 90rem;
-  min-height: 74.85vh;
 
   width: 100%;
   height: 100%;
@@ -137,6 +159,7 @@ const StyledDiv = styled.div`
     margin-bottom: 6.25rem;
     padding: 0 0.625rem;
     width: 100%;
+    position: relative;
   }
   .title {
     max-width: 936px;
@@ -162,17 +185,18 @@ const StyledDiv = styled.div`
     }
   }
   .board-content {
+    display: block;
     max-width: 58.5rem;
     min-height: 8.75rem;
     width: 100%;
     padding: 1.25rem;
-    margin: auto;
-    // border: 0.1875rem solid #333;
+    margin: 0 auto;
+    margin-bottom: 1.25rem;
     border-radius: 0.5rem;
     font-size: 1rem;
     word-break: break-all;
     background-color: #ddd;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0.3125rem 0.3125rem 0.3125rem rgba(0, 0, 0, 0.5);
   }
   .line {
     margin-top: 10.25rem;
@@ -180,6 +204,67 @@ const StyledDiv = styled.div`
     width: 100%;
     background-color: grey;
     margin: 0 0 3rem;
+  }
+
+  .btn-wrap {
+    max-width: 58.5rem;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .perv-btn-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 936px;
+    margin: 0 auto;
+
+    .perv-btn {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0;
+      width: 9.375rem;
+      padding: 0.3125rem;
+      text-align: center;
+      font-size: 1.125rem;
+      font-weight: 500;
+
+      transition-duration: 0.3s;
+      :hover {
+        color: #2563eb;
+      }
+    }
+  }
+  .save-btn-wrap {
+    max-width: 58.5rem;
+    width: 100%;
+    margin: 0 auto;
+
+    .save-btn {
+      margin: 0 0.4375rem;
+      padding: 0.625rem 1.25rem;
+      border: 1px solid #aaa;
+      border-radius: 0.625rem;
+
+      transition-duration: 0.3s;
+      :hover {
+        color: #f2f2f2;
+        background-color: #2563eb;
+        border: 1px solid #2563eb;
+      }
+    }
+  }
+`;
+
+const StyledBtn = styled.button`
+  margin: 0 0.4375rem;
+  padding: 0.625rem 1.25rem;
+  border: 1px solid #aaa;
+  border-radius: 0.625rem;
+
+  transition-duration: 0.3s;
+  :hover {
+    color: #f2f2f2;
+    background-color: #2563eb;
+    border: 1px solid #2563eb;
   }
 `;
 

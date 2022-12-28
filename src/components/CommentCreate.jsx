@@ -10,25 +10,53 @@ import {
 } from "../redux/modules/commentSlice";
 
 const CommentCreateStyled = styled.div`
+  box-shadow: 3px 3px 5px rgb(0 0 0 / 50%);
   margin: 3rem 0;
-  background-color: #e5e7eb;
+  background-color: #ddd;
   border-radius: 0.75rem 0.75rem 0 0;
   padding: 3rem 3rem 1rem;
   width: 58.5rem;
   margin: 0 auto;
+
   .custom-btn {
     margin: 0.3125rem 0;
     font-size: 1rem;
+
     background-color: ${(props) =>
       props.postEnabled && props.patchEnabled ? "#fff" : "#D1D5DB"};
     color: ${(props) =>
       props.postEnabled && props.patchEnabled ? "#111827" : "#6B7280"};
+
     padding: 0.5rem 0.75rem;
     border-radius: 0.5rem;
     cursor: pointer;
     :hover {
       color: ${(props) =>
-        props.postEnabled && props.patchEnabled ? "#2563eb" : "#6B7280"};
+        props.postEnabled && props.patchEnabled ? "#f2f2f2" : "#6B7280"};
+    }
+  }
+
+  .container {
+    position: relative;
+    margin-bottom: 1.875rem;
+    .custom-btn {
+      position: absolute;
+      bottom: -0.3125rem;
+      right: 0;
+      transition-duration: 0.3s;
+      /* color: #f2f2f2;
+      background-color: #333; */
+
+      background-color: ${(props) =>
+        props.postEnabled && props.patchEnabled ? "#fff" : "#D1D5DB"};
+      color: ${(props) =>
+        props.postEnabled && props.patchEnabled ? "#111827" : "#6B7280"};
+
+      /* :hover {
+        color: #2563eb;
+        background: #f2f2f2;
+        box-shadow: 0.1875rem 0.1875rem 0.1875rem rgba(0, 0, 0, 0.5);
+      } */
     }
   }
   .custom-input {
@@ -36,9 +64,17 @@ const CommentCreateStyled = styled.div`
     padding: 0.5rem 0.75rem;
     border-radius: 0.5rem;
     margin: 0 1rem 0 0;
+    transition-duration: 0.3s;
+    @extend placeholder;
+    font-size: 0.75rem;
+    :focus {
+      box-shadow: 0.1875rem 0.1875rem 0.1875rem rgba(0, 0, 0, 0.5);
+    }
   }
   h3 {
     font-weight: 700;
+    margin-bottom: 0.625rem;
+    margin-left: 0.1875rem;
   }
 `;
 
@@ -122,7 +158,7 @@ function CommentCreate() {
 
   return (
     <CommentCreateStyled postEnabled={postEnabled} patchEnabled={patchEnabled}>
-      <div>
+      <div className="container">
         <h3>댓글 쓰기창</h3>
         <input
           type="text"
@@ -147,21 +183,18 @@ function CommentCreate() {
             onChange={(e) => handlePasswordChange(e)}
           />
         )}
-
         {editText ? (
           <button
             className="custom-btn"
             disabled={!patchEnabled}
-            onClick={(e) => handleSaveComment(e)}
-          >
+            onClick={(e) => handleSaveComment(e)}>
             댓글저장
           </button>
         ) : (
           <button
             className="custom-btn"
             disabled={!postEnabled}
-            onClick={(e) => handlePostComment(e)}
-          >
+            onClick={(e) => handlePostComment(e)}>
             댓글작성
           </button>
         )}

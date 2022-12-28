@@ -24,17 +24,16 @@ const BoardItemBox = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    margin-bottom: -0.625rem;
+    margin-bottom: 0.625rem;
   }
 
   h2 {
-    margin-bottom: 0.625rem;
     font-size: 1.25rem;
+    font-weight: 500;
   }
 
   .closeBtn {
-    padding: 0 7px;
+    padding: 0 0.4375rem;
     border: 0rem;
     font-size: 1.85rem;
     transition-duration: 0.3s;
@@ -44,9 +43,13 @@ const BoardItemBox = styled.div`
   }
 
   .detailBtn {
-    border: 0rem;
-    text-decoration: none;
-    color: black;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    transition-duration: 0.3s;
+    :hover {
+      color: #2563eb;
+    }
   }
 
   .manager {
@@ -58,11 +61,37 @@ const BoardItemBox = styled.div`
     min-height: 100px;
     height: 100%;
 
-    padding-top: 10px;
-    padding-left: 10px;
+    padding: 0.625rem;
 
     border: 1px solid #aaa;
-    border-radius: 10px;
+    border-radius: 0.625rem;
+  }
+  .title-wrap {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0.3125rem;
+    margin-bottom: 0.5rem;
+  }
+  .detail-icon {
+    position: absolute;
+    top: 0.3125rem;
+    right: 0;
+    width: 1.75rem;
+    height: 1.75rem;
+    transition-duration: 0.3s;
+    :hover {
+      transform: rotate(15deg);
+    }
+  }
+
+  .businessman-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.3125rem;
   }
 `;
 
@@ -79,27 +108,41 @@ const BoardItem = ({ name, id, title, category, content }) => {
   return (
     <BoardItemBox>
       <div className="boardTop">
-        <div className="manager"> 담당자 : {name} </div>
+        <div className="manager">
+          {" "}
+          <img
+            className="businessman-icon"
+            src="./businessman.svg"
+            alt="Task 담당자 아이콘"
+          />{" "}
+          {name}{" "}
+        </div>
         <button
           className="closeBtn"
           onClick={() => {
             onDelete(id);
-          }}
-        >
+          }}>
           x
         </button>
       </div>
-      {/* navigate로 수정-희진 */}
-      <button
-        className="detailBtn"
-        onClick={() => {
-          navigate(`/detail/${id}`);
-        }}
-      >
-        [상세보기]
-      </button>
-      <h2> {title} </h2>
-      {/*보드 내용 삽입*/}
+      <div className="title-wrap">
+        <h2> {title} </h2>
+        {/*보드 내용 삽입*/}
+
+        {/* navigate로 수정-희진 */}
+        <button
+          className="detailBtn"
+          onClick={() => {
+            navigate(`/detail/${id}`);
+          }}>
+          <img
+            className="detail-icon"
+            src="./view-details.svg"
+            alt="자세히보기 바로가기 버튼"
+          />
+        </button>
+      </div>
+
       <div className="content-box">
         <p>{content}</p>
       </div>
@@ -107,13 +150,11 @@ const BoardItem = ({ name, id, title, category, content }) => {
       <CustomBtn
         nameBtn="nextCategory"
         CurrentCategory={category}
-        BoardItemId={id}
-      ></CustomBtn>
+        BoardItemId={id}></CustomBtn>
       <CustomBtn
         nameBtn="prevCategory"
         CurrentCategory={category}
-        BoardItemId={id}
-      ></CustomBtn>
+        BoardItemId={id}></CustomBtn>
     </BoardItemBox>
   );
 };
