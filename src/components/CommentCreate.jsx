@@ -20,16 +20,18 @@ const CommentCreateStyled = styled.div`
   .custom-btn {
     margin: 0.3125rem 0;
     font-size: 1rem;
+
     background-color: ${(props) =>
       props.postEnabled && props.patchEnabled ? "#fff" : "#D1D5DB"};
     color: ${(props) =>
       props.postEnabled && props.patchEnabled ? "#111827" : "#6B7280"};
+
     padding: 0.5rem 0.75rem;
     border-radius: 0.5rem;
     cursor: pointer;
     :hover {
       color: ${(props) =>
-        props.postEnabled && props.patchEnabled ? "#2563eb" : "#6B7280"};
+        props.postEnabled && props.patchEnabled ? "#f2f2f2" : "#6B7280"};
     }
   }
   .container {
@@ -40,13 +42,19 @@ const CommentCreateStyled = styled.div`
       bottom: -0.3125rem;
       right: 0;
       transition-duration: 0.3s;
-      color: #f2f2f2;
-      background-color: #333;
-      :hover {
+      /* color: #f2f2f2;
+      background-color: #333; */
+
+      background-color: ${(props) =>
+        props.postEnabled && props.patchEnabled ? "#fff" : "#D1D5DB"};
+      color: ${(props) =>
+        props.postEnabled && props.patchEnabled ? "#111827" : "#6B7280"};
+
+      /* :hover {
         color: #2563eb;
         background: #f2f2f2;
         box-shadow: 0.1875rem 0.1875rem 0.1875rem rgba(0, 0, 0, 0.5);
-      }
+      } */
     }
   }
   .custom-input {
