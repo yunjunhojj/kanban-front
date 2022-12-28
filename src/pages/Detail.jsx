@@ -57,6 +57,12 @@ const Detail = () => {
       pw: board.pw,
       title: board.title,
     };
+    // 유효성 {
+    if (!content) {
+      setContent("");
+      alert("수정할 내용을 입력해주세요.");
+      return;
+    }
 
     dispatch(patchBoardThunk(newBoard));
     setEditable(!editable);
