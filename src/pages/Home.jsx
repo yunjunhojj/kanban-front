@@ -3,7 +3,7 @@
 import styled from "styled-components";
 // import { getBoardThunk } from "../redux/modules/boardSlice";
 import { BoardColumn } from "../components";
-import { nanoid } from "@reduxjs/toolkit";
+
 
 const HomeStyled = styled.main`
   max-width: 90rem;

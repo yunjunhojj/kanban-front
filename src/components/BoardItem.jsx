@@ -125,7 +125,6 @@ const BoardItem = ({ name, id, title, category, content }) => {
           x
         </button>
       </div>
-
       <div className="title-wrap">
         <h2> {title} </h2>
         {/*보드 내용 삽입*/}

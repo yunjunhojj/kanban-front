@@ -13,7 +13,6 @@ const CustomBtnStyle = styled.button`
 const CustomBtn = ({ nameBtn, BoardItemId, CurrentCategory }) => {
   const dispatch = useDispatch();
 
-
   const onToggle = (nameBtn, BoardItemId, category) => {
     dispatch(patchCategoryThunk([nameBtn, BoardItemId, category]));
   };
@@ -22,18 +21,20 @@ const CustomBtn = ({ nameBtn, BoardItemId, CurrentCategory }) => {
 
   const categoryList_Kr = ["착수", "검토", "완료", "저장", "번복"];
 
-  return (
-    <CustomBtnStyle
-      name={nameBtn}
-      onClick={() =>
-        onToggle(nameBtn, BoardItemId, categoryList.indexOf(CurrentCategory))
-      }
-    >
-      {nameBtn === "nextCategory"
-        ? categoryList_Kr[categoryList.indexOf(CurrentCategory)]
-        : "번복"}
-    </CustomBtnStyle>
-  );
+  if (nameBtn === "nextCategory" || CurrentCategory !== "todo") {
+    return (
+      <CustomBtnStyle
+        name={nameBtn}
+        onClick={() =>
+          onToggle(nameBtn, BoardItemId, categoryList.indexOf(CurrentCategory))
+        }
+      >
+        {nameBtn === "nextCategory"
+          ? categoryList_Kr[categoryList.indexOf(CurrentCategory)]
+          : "번복"}
+      </CustomBtnStyle>
+    );
+  }
 };
 
 export default CustomBtn;
