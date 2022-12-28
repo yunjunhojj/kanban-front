@@ -57,9 +57,11 @@ const Detail = () => {
       pw: board.pw,
       title: board.title,
     };
+
     // 유효성 {
     if (!content) {
       setContent("");
+      console.log("content IS : ", content);
       alert("수정할 내용을 입력해주세요.");
       return;
     }
@@ -109,11 +111,11 @@ const Detail = () => {
                   className="board-content"
                   value={content}
                   onChange={boardContentChangeHandler}></input>
+                <div className="save-btn-wrap">
+                  <StyledBtn type="submit">저장</StyledBtn>
+                  <StyledBtn onClick={() => editOn()}>취소</StyledBtn>
+                </div>
               </form>
-              <div className="save-btn-wrap">
-                <StyledBtn type="submit">저장</StyledBtn>
-                <StyledBtn onClick={() => editOn()}>취소</StyledBtn>
-              </div>
             </>
           ) : (
             <>

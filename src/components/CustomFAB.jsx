@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useBodyScrollLock } from "../Hooks/index";
 import { showCreateBoardModal } from "../redux/modules/boardSlice.js";
 import CreateBoardModal from "./CreateBoardModal";
+// import plus from "../../public/plus.svg";
+import plus from "../plus.svg";
 
 const CustomFABStyled = styled.button`
   border-radius: 50%;
@@ -38,7 +40,7 @@ const CustomFAB = () => {
     <div>
       <CreateBoardModal />
       <CustomFABStyled onClick={() => handleOpenModal()}>
-        <img className="FAB-icon" src="./plus.svg" alt="board 추가 버튼" />
+        <img className="FAB-icon" src={plus} alt="board 추가 버튼" />
       </CustomFABStyled>
     </div>
   );

@@ -66,7 +66,7 @@
       "name": "spq",
       "title": "spq",
       "category": "todo",
-      "content": "ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ",
+      "content": "동작완료",
       "password": "spq"
     }
   ],
@@ -89,7 +89,7 @@
       "id": "UqrFJgJk4Z69a6ut6g6nj",
       "boardId": "eML1Ky8lglX83gnxlQzlr",
       "name": "휘인",
-      "comment": "input에 공백 상태에서 댓글 작성 클릭 시, 작동은 하지 않으나 alret가 뜨지 않습니다.hotfix 해야 할 것 같습니다.",
+      "comment": "굿굿",
       "password": "1234"
     },
     {

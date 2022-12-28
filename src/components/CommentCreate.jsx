@@ -17,6 +17,7 @@ const CommentCreateStyled = styled.div`
   padding: 3rem 3rem 1rem;
   width: 58.5rem;
   margin: 0 auto;
+
   .custom-btn {
     margin: 0.3125rem 0;
     font-size: 1rem;
@@ -34,6 +35,7 @@ const CommentCreateStyled = styled.div`
         props.postEnabled && props.patchEnabled ? "#f2f2f2" : "#6B7280"};
     }
   }
+
   .container {
     position: relative;
     margin-bottom: 1.875rem;
