@@ -31,11 +31,9 @@
 # 기능
 
 - 메인
-    
-    ![kanban-front-phi.vercel.app_.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/dde6e1a0-b062-4cc2-ad41-8fd7f0a0b169/kanban-front-phi.vercel.app_.png)
-    
-    ![kanban-front-phi.vercel.app_ (5).png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e1d2d5e8-abe2-44ce-b5b4-c6d1250a70ae/kanban-front-phi.vercel.app__(5).png)
-    
+    ![image](https://user-images.githubusercontent.com/50473516/220860942-521f2fdd-1887-4b53-aa37-da9ddb5cdda9.png)
+
+  
     - **4단계 진행 상태로 구성**
         
         진행 상태별 버튼 클릭 시 해당 column으로 이동
@@ -67,7 +65,8 @@
             
 
 - 보드 카드 생성 모달
-    
+    ![image](https://user-images.githubusercontent.com/50473516/220861024-5591ba20-c061-46ba-98cc-4ab86b4dfdfb.png)
+
     ![kanban-front-phi.vercel.app_ (6).png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0c8ee74f-883d-4c63-94f6-7ea591c3a074/kanban-front-phi.vercel.app__(6).png)
     
     ![kanban-front-phi.vercel.app_ (7).png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f5dd4460-cd40-410d-9776-b57342af6fa1/kanban-front-phi.vercel.app__(7).png)
@@ -104,9 +103,7 @@
 
 - 상세 페이지
     
-    ![kanban-front-phi.vercel.app_ (1).png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9afeacf3-f9b8-489a-a80a-557c31aa9c41/kanban-front-phi.vercel.app__(1).png)
-    
-    ![kanban-front-phi.vercel.app_detail_CS4eIKS9lCKsrP5u9a-qh.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4d592302-553d-456b-82ae-d28dcd22f660/kanban-front-phi.vercel.app_detail_CS4eIKS9lCKsrP5u9a-qh.png)
+   ![image](https://user-images.githubusercontent.com/50473516/220861153-dfe32f5a-d4c2-463a-8436-10f8ac1e0aa1.png)
     
     - 보드 R, U, D 구현
         - 코드
@@ -155,8 +152,7 @@
             
 
 - 댓글
-    
-    ![kanban-front-phi.vercel.app_ (3).png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ea4b80d2-cb72-43b3-b460-1a3696883d2a/kanban-front-phi.vercel.app__(3).png)
+
     
     - 댓글 CRUD 구현
         - 코드
@@ -235,12 +231,10 @@
                 
     - 빈 input 창 → 댓글작성 버튼 비활성화
     
-    ![kanban-front-phi.vercel.app_ (4).png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4301538a-749c-4d51-be9c-c18daa985dba/kanban-front-phi.vercel.app__(4).png)
-    
+  
 
 ## #git flow
 
-![github.com_yunjunhojj_kanban-front_pulls_q=is%3Apr+is%3Aclosed.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bde4ab0b-68e1-4ae0-a809-7d4b7d60c7bb/github.com_yunjunhojj_kanban-front_pulls_qis3Apris3Aclosed.png)
 
 [convention](https://www.notion.so/convention-04fdfeab55754de789e58dfff9b2fe82)
 
